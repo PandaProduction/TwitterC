@@ -11,10 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import network.mail.FolderManager;
 import cookie.swipe.application.CookieSwipeApplication;
-import dao.DAOMailAccount;
-import dao.DAOUser;
 import errorMessage.CodeError;
 import network.messageFramework.DeliverySystem;
 import network.messageFramework.FrameworkMessage;
@@ -80,7 +77,7 @@ public class User {
      * @return l'utilisateur créé
      */
     public int create() {
-        return dao.DAOUser.createUser(this);
+        return 0;
     }
 
     /**
@@ -89,7 +86,7 @@ public class User {
      * @return Utilisateur connecté
      */
     public int connect() {
-    	return dao.DAOUser.connectUser(this);
+    	return 0;
     }
 
     /**
@@ -118,95 +115,7 @@ public class User {
      * @param newMailAccount compte courriel à ajouter
      * @return Si le compte courriel à bien été ajouté
      */
-    public int addNewMailAccount(String name, String address, String password) {
-        String mailDomain = address.substring(address.indexOf('@') + 1);
-        Domain domain = null;
-        try {
-            domain = Domain.getDomainFor(mailDomain);
-        } catch (Exception ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-            return CodeError.FAILLURE;
-        }
-        
-        MailAccount newMailAccount = new MailAccount(name, address, domain, password);
-        if(!newMailAccount.connectionIsOk()) {	
-        	return CodeError.CONNEXION_FAIL;
-        }
-        
-        int res = DAOMailAccount.createMailAccount(newMailAccount, this);
-        if (res == CodeError.SUCESS) {
-            addMailAccount(newMailAccount);
-        }
-        return res;
-    }
-
-    private void addMailAccount(MailAccount newMailAccount) {
-        listOfMailAccount.add(newMailAccount);
-        notifyMailAccountAdded(newMailAccount);	
-        DeliverySystem.launchTask(new FrameworkMessage<Object>() {
-            @Override
-            public Object call() throws Exception {
-                try {
-                    FolderManager fm = (FolderManager)CookieSwipeApplication.getApplication().getParam("FolderManager");
-                    fm.addNewMailAccount(newMailAccount);
-                } catch (Exception e) {
-                    Logger.getLogger(getClass().getName()).log(Level.SEVERE, "An error occured while opening store", e);
-		}
-                return null;
-            }
-
-        });
-    }
-
-	public int updatemailAccount(MailAccount mailAccount) {
-        return DAOMailAccount.updateMailAccount(mailAccount);
-    }
-
-    /**
-     * Supprime un compte courriel des préférence de l'utilisateur
-     *
-     * @param deletedMailAccount compte courriel à supprimer
-     * @return Si le compte courriel à bien été supprimé
-     */
-    public int deleteMailAccount(MailAccount deletedMailAccount) {
-        int error = DAOMailAccount.deleteMailAccount(deletedMailAccount);
-        if (error == CodeError.SUCESS) {
-            listOfMailAccount.remove(deletedMailAccount);
-            notifyMailAccountDeleted(deletedMailAccount);
-        }
-        return error;
-    }
-
-    /**
-     * Ajoute un expéditeur à la liste noire
-     *
-     * @param sender adresse courriel de l'expéditeur à rajouter
-     * @return Si l'adresse à bien été ajoutée de la liste noire
-     */
-    public boolean blackListSender(String sender) {
-        if (blackList == null) {
-            blackList = new ArrayList<>();
-        }
-       boolean ret = blackList.add(sender);
-        if ( ret )
-            DAOUser.updateBlackListUser(this);
-//        refreshList();
-        for(MailAccount ma : this.getListOfMailAccount()) {
-            ma.clearMailFrom(sender);
-        }
-        return ret;
-    }
-
-    /**
-     * Supprimer un expéditeur de la liste noire
-     *
-     * @param sender adresse courriel de l'expéditeur à supprimer
-     * @return Si l'adresse à bien été retirée de la liste noire
-     */
-    public boolean removeBlackListSender(String sender) {
-        return blackList.remove(sender);
-    }
-
+    
     //Getter & setter
     public int getId() {
         return id;
@@ -244,24 +153,7 @@ public class User {
         this.backupMail = backupMail;
     }
 
-    public List<MailAccount> getListOfMailAccount() {
-        return listOfMailAccount;
-    }
-
-    public void setListOfMailAccount(List<MailAccount> listOfMailAccount) {
-        this.listOfMailAccount = listOfMailAccount;
-    }
-
-    public List<String> getBlackList() {
-        if(blackList == null)
-            blackList = new ArrayList<>();
-        return blackList;
-    }
-
-    public void setBlackList(List<String> blackList) {
-        this.blackList = blackList;
-    }
-
+   
     //equals & hashcode
     @Override
     public int hashCode() {
@@ -287,31 +179,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", loginAdressMail=" + loginAdressMail + ", password=" + password + ", backupMail=" + backupMail + ", listOfMailAccount=" + listOfMailAccount + ", blackList=" + blackList + '}';
-    }
-
-    public void addListMailAccountListeneur(ListMailAccountListener listener) {
-        mailAccountListeners.add(listener);
-    }
-    
-    private void notifyMailAccountAdded(MailAccount mc) {
-        for(ListMailAccountListener listener : mailAccountListeners) {
-            listener.notifyMailAccountAdded(mc);
-        }
-    }
-    
-    private void notifyMailAccountDeleted(MailAccount mc) {
-        for(ListMailAccountListener listener : mailAccountListeners) {
-            listener.notifyMailAccountDeleted(mc);
-        }
-    }
-
-    public void retrieveMails() {
-    	DAOMailAccount.loadMails(listOfMailAccount);
-    }
-
-    public int update() {
-        return DAOUser.updateUser(this);
+        return "User{" + "id=" + id + ", loginAdressMail=" + loginAdressMail + ", password=" + password + ", backupMail=" + backupMail;
     }
 
 }
