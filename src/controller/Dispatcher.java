@@ -11,26 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import module.backoffice.ConnectAccountAction;
-import module.backoffice.DisconectAccountAction;
-import network.messageFramework.DeliverySystem;
-import network.messageFramework.FrameworkMessage;
-import view.component.CookieSwipeFrame;
-import view.component.CookieSwipePasswordField;
-import view.component.CookieSwipeTextField;
-import cookie.swipe.application.CookieSwipeApplication;
-import java.io.File;
-import java.util.List;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import model.User;
-import module.backoffice.CreateCSAccountAction;
 import module.ihm.CreateAccountFrameInitializer;
-import module.ihm.LoginForgottenFrameInitializer;
-import module.ihm.PasswordForgottenFrameInitializer;
-import view.LoginForgottenCSFrame;
-import view.PasswordForgottenCSFrame;
+import view.InscriptionCSFrame;
 
 
 public class Dispatcher implements ActionListener {
@@ -78,10 +60,12 @@ public class Dispatcher implements ActionListener {
     }
 
     public void createAccountAction() { // compte cookie swipe a créé
-        
+                System.err.println("create");
     }
     
     public void inscriptionAction() {
+        System.err.println("Inscription");
+        new CreateAccountFrameInitializer(new InscriptionCSFrame()).execute();
         
     }
 }

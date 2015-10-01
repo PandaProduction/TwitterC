@@ -8,21 +8,15 @@ import java.awt.Color;
  */
 public class ActionName {
     
-        public static final String createAccount = "createAccount", insciption = "inscription", 
-                logAccount = "logAccount", sendMailForgottenLogin = "sendMailForgottenLogin",  
-                sendMailForgottenPassword = "sendMailForgottenPassword", reply = "reply", 
-                replyAll = "replyAll", forward = "forward", archive = "archive", 
-                addAttachement = "addAttachement", updateCSAccount = "updateCSAccount", 
-                updateAccount = "updateAccount", forgottenPassword = "forgottenPassword",
-                forgottenLogin = "forgottenLogin", addMailAccount = "addMailAccount",
-                selectMailAccount = "selectMailAccount", updateMailAccount = "updateMailAccount",
-                deleteMailAccount = "deleteMailAccount", writeMail = "writeMail",
-                readMail = "readMail", selectMail = "selectMail", deleteMail = "deleteMail",
-                addBlackListSender = "addBlackListSender", showBlacklistSender = "showBlacklistSender", 
-                removeBlacklistSender = "removeBlacklistSender",
-                replyMail = "answerMail", forwardMail = "forwardMail", sendMail = "sendMail",
-                downloadPicture = "downloadPicture", logout = "logout", createMailAccount = "createMailAccount",
-                refresh = "refresh";  
+        public static final String createAccount = "createAccount", 
+                insciption = "inscription", 
+                logAccount = "logAccount", 
+                sendMailForgottenLogin = "sendMailForgottenLogin",  
+                sendMailForgottenPassword = "sendMailForgottenPassword", 
+                updateCSAccount = "updateCSAccount", 
+                forgottenPassword = "forgottenPassword",
+                forgottenLogin = "forgottenLogin", 
+logout = "logout"; 
 
         public static final Color bg = new Color(1, 1, 1);
 }

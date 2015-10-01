@@ -14,19 +14,14 @@ import view.component.CookieSwipeTextField;
 
 public class LoginForgottenCSFrame extends CookieSwipeFrame implements IJFrame {
 
-	private static final long serialVersionUID = 4729753654116728888L;
-
-	private CookieSwipeButton cookieSwipeButtonSendLogin;
-    
+    private static final long serialVersionUID = 4729753654116728888L;
+    private CookieSwipeButton cookieSwipeButtonSendLogin;
     private CookieSwipeLabel cookieSwipeLabelMailAddress;
-    
     private CookieSwipeTextField cookieSwipeTextFieldMailAddress;
-    
 
     public LoginForgottenCSFrame() {
 
         initFrame();
-        
     }
     
     private void initFrame(){

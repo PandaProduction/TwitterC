@@ -5,16 +5,9 @@
  */
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import cookie.swipe.application.CookieSwipeApplication;
-import errorMessage.CodeError;
-import network.messageFramework.DeliverySystem;
-import network.messageFramework.FrameworkMessage;
 
 /**
  * Utilisateur de l'application Cookie Swipe Peut être un singleton ?
@@ -77,6 +70,7 @@ public class User {
      * @return l'utilisateur créé
      */
     public int create() {
+        System.err.println("Debug Create : " + this);
         return 0;
     }
 
