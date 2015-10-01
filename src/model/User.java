@@ -29,9 +29,6 @@ public class User {
     //Variable membre
     private int id;
     private String loginAdressMail, password, backupMail;
-    private List<MailAccount> listOfMailAccount = new ArrayList<>();
-    private List<String> blackList;
-    private List<ListMailAccountListener> mailAccountListeners = new ArrayList<>();
 
     //Constrcuteur
     /**
@@ -42,7 +39,7 @@ public class User {
     }
 
     /**
-     * Constructeur à utiliser lors de la connexion à un compte CS
+     * Constructeur à utiliser lors de la connexion à un compte
      *
      * @param loginAdressMail login de connexion du compte
      * @param password mot de passe de connexion du compte
@@ -59,7 +56,7 @@ public class User {
     }
 
     /**
-     * Constructeur à utiliser lors de la création d'un compte CS
+     * Constructeur à utiliser lors de la création d'un compte
      *
      * @param loginAdressMail login du compte et adresse principale
      * @param password Mot de passe du compte
