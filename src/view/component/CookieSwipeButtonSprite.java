@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
  *
  * @author Suiken
  */
-public class CookieSwipeButtonSprite extends CookieSwipeButton{
+public class CookieSwipeButtonSprite extends PandaProdButton{
 
     private static final long serialVersionUID = 1L;
 
@@ -67,15 +67,15 @@ public class CookieSwipeButtonSprite extends CookieSwipeButton{
 
     public CookieSwipeButtonSprite() {
     	super();
-    	buttonColor = CookieSwipeColor.BACKGROUND_FRAME;
+    	buttonColor = PandaProdColor.BACKGROUND_FRAME;
     }
     
     protected void initComponent(){	
-		setForeground(CookieSwipeColor.LETTER);
+		setForeground(PandaProdColor.LETTER);
 		
 		setFocusPainted(false);
 		
-		Border thickBorder = new LineBorder(CookieSwipeColor.BACKGROUND_FRAME, 2);
+		Border thickBorder = new LineBorder(PandaProdColor.BACKGROUND_FRAME, 2);
 		setBorder(thickBorder);
 	
 		setContentAreaFilled(false);

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="pandaProdLabelMail" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="pandaProdLabelBackup" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="pandaProdLabelPassword" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="pandaProdTextFieldLoginAdressMail" max="32767" attributes="0"/>
+                  <Component id="pandaProdTextFieldBackupMail" max="32767" attributes="0"/>
+                  <Component id="pandaProdPasswordFieldPassword" pref="300" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="pandaProdButtonValidate" min="-2" pref="118" max="-2" attributes="0"/>
+              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <Component id="pandaProdButtonCancel" min="-2" pref="118" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="pandaProdTextFieldLoginAdressMail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pandaProdLabelMail" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="pandaProdTextFieldBackupMail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pandaProdLabelBackup" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="pandaProdPasswordFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pandaProdLabelPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="pandaProdButtonValidate" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="pandaProdButtonCancel" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="view.component.PandaProdTextField" name="pandaProdTextFieldLoginAdressMail">
+    </Component>
+    <Component class="view.component.PandaProdTextField" name="pandaProdTextFieldBackupMail">
+    </Component>
+    <Component class="view.component.PandaProdPasswordField" name="pandaProdPasswordFieldPassword">
+    </Component>
+    <Component class="view.component.PandaProdButton" name="pandaProdButtonValidate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Envoyer"/>
+      </Properties>
+    </Component>
+    <Component class="view.component.PandaProdButton" name="pandaProdButtonCancel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Annuler"/>
+      </Properties>
+    </Component>
+    <Component class="view.component.PandaProdLabel" name="pandaProdLabelMail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mail"/>
+      </Properties>
+    </Component>
+    <Component class="view.component.PandaProdLabel" name="pandaProdLabelBackup">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mail de secours"/>
+      </Properties>
+    </Component>
+    <Component class="view.component.PandaProdLabel" name="pandaProdLabelPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mot de passe"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

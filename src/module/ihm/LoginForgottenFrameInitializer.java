@@ -8,8 +8,8 @@ package module.ihm;
 import controller.ActionName;
 import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
-import view.component.CookieSwipeButton;
-import view.component.CookieSwipeFrame;
+import view.component.PandaProdButton;
+import view.component.PandaProdFrame;
 
 /**
  *
@@ -17,14 +17,14 @@ import view.component.CookieSwipeFrame;
  */
 public class LoginForgottenFrameInitializer extends AbstractIHMAction {
 
-    public LoginForgottenFrameInitializer(CookieSwipeFrame csFrame) {
+    public LoginForgottenFrameInitializer(PandaProdFrame csFrame) {
         super(csFrame);
     }
 
     @Override
     public boolean execute(Object... object) {
         Dispatcher dispatcher = new Dispatcher();
-        CookieSwipeButton button = (CookieSwipeButton) hsJcomponent.get("cookieSwipeButtonSendLogin");
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendLogin");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.sendMailForgottenLogin);
         return true;

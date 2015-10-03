@@ -6,7 +6,7 @@
 package interfaces;
 
 import java.util.HashMap;
-import view.component.CookieSwipeFrame;
+import view.component.PandaProdFrame;
 
 /**
  *
@@ -16,7 +16,7 @@ public abstract class AbstractIHMAction implements IAction {
    
     protected HashMap<String, Object> hsJcomponent;
 
-    public AbstractIHMAction(CookieSwipeFrame csFrame) {
+    public AbstractIHMAction(PandaProdFrame csFrame) {
         hsJcomponent = csFrame.getJComponent();
     }
 }

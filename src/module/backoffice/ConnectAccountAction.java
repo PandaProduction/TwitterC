@@ -5,7 +5,7 @@
  */
 package module.backoffice;
 
-import cookie.swipe.application.CookieSwipeApplication;
+import panda.prod.application.PandaProdApplication;
 import errorMessage.CodeError;
 import interfaces.IAction;
 import javax.swing.JOptionPane;
@@ -22,13 +22,15 @@ public class ConnectAccountAction implements IAction {
         String login = (String) object[0];
         String password = (String) object[1];
 
-        User u = CookieSwipeApplication.getApplication().getUser();
+        User u = PandaProdApplication.getApplication().getUser();
         u.setLoginAdressMail(login);
         u.setPassword(password);
+        System.err.println("login : " + login + " mdp : " + password);
+        System.err.println("login : " + u.getLoginAdressMail() + " mdp : " + u.getPassword());
 
-        if(u.connect() != CodeError.SUCESS) {
+        if (u.connect() != CodeError.SUCESS) {
             new JOptionPane();
-			JOptionPane.showMessageDialog(null, "Connexion impossible, merci de vérifier votre login",
+            JOptionPane.showMessageDialog(null, "Connexion impossible, merci de vérifier votre login",
                     "Connexion à Cookie Swipe", JOptionPane.ERROR_MESSAGE);
             return false;
         }

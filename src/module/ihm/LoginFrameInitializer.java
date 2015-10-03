@@ -8,8 +8,8 @@ package module.ihm;
 import controller.ActionName;
 import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
-import view.component.CookieSwipeButton;
-import view.component.CookieSwipeFrame;
+import view.component.PandaProdButton;
+import view.component.PandaProdFrame;
 
 /**
  *
@@ -17,23 +17,23 @@ import view.component.CookieSwipeFrame;
  */
 public class LoginFrameInitializer extends AbstractIHMAction {
 
-    public LoginFrameInitializer(CookieSwipeFrame csFrame) {
+    public LoginFrameInitializer(PandaProdFrame csFrame) {
         super(csFrame);
     }
     
     @Override
     public boolean execute(Object ... object) {
         Dispatcher dispatcher = new Dispatcher();
-        CookieSwipeButton button = (CookieSwipeButton) hsJcomponent.get("cookieSwipeButtonLogin");
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonLogin");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.logAccount);
-        button = (CookieSwipeButton) hsJcomponent.get("cookieSwipeButtonSendLogin");
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendLogin");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.forgottenLogin);
-        button = (CookieSwipeButton) hsJcomponent.get("cookieSwipeButtonSendPassword");
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendPassword");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.forgottenPassword);
-        button = (CookieSwipeButton) hsJcomponent.get("cookieSwipeButtonInscription");
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonInscription");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.insciption);
         return true;

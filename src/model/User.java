@@ -5,6 +5,8 @@
  */
 package model;
 
+import dao.mysql.MySQLQuery;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,18 +51,19 @@ public class User {
      * Constructeur à utiliser lors de la création d'un compte
      *
      * @param loginAdressMail login du compte et adresse principale
-     * @param password Mot de passe du compte
      * @param backUpMail adrese courriel de récupération
+     * @param password Mot de passe du compte
      */
-    public User(String loginAdressMail, String password, String backUpMail) {
+    public User(String loginAdressMail, String backUpMail, String password) {
         this.loginAdressMail = loginAdressMail;
+        this.backupMail = backUpMail;
         try {
             this.password = new Encryption().encrypt(password);
         } catch (Exception ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             this.password = "";
         }
-        this.backupMail = backUpMail;
+
     }
 
     //Fonction membre publique
@@ -70,8 +73,7 @@ public class User {
      * @return l'utilisateur créé
      */
     public int create() {
-        System.err.println("Debug Create : " + this);
-        return 0;
+        return MySQLQuery.createUser(this);
     }
 
     /**
@@ -80,7 +82,7 @@ public class User {
      * @return Utilisateur connecté
      */
     public int connect() {
-    	return 0;
+        return MySQLQuery.connectUser(this);
     }
 
     /**
@@ -109,7 +111,6 @@ public class User {
      * @param newMailAccount compte courriel à ajouter
      * @return Si le compte courriel à bien été ajouté
      */
-    
     //Getter & setter
     public int getId() {
         return id;
@@ -147,7 +148,6 @@ public class User {
         this.backupMail = backupMail;
     }
 
-   
     //equals & hashcode
     @Override
     public int hashCode() {
