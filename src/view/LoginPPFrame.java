@@ -104,7 +104,7 @@ public class LoginPPFrame extends PandaProdFrame implements IJFrame {
         pandaProdButtonLogin = new view.component.PandaProdButton();
 
         
-       	logoPanel = new PandaProdPanel(new File("cookieSwipe.png"));
+       	logoPanel = new PandaProdPanel(new File("panda.png"));
        	logoPanel.setBackground(PandaProdColor.BACKGROUND_FRAME);
        	
         pandaProdLabelLogin.setText("Login");
