@@ -25,8 +25,6 @@ public class ConnectAccountAction implements IAction {
         User u = PandaProdApplication.getApplication().getUser();
         u.setLoginAdressMail(login);
         u.setPassword(password);
-        System.err.println("login : " + login + " mdp : " + password);
-        System.err.println("login : " + u.getLoginAdressMail() + " mdp : " + u.getPassword());
 
         if (u.connect() != CodeError.SUCESS) {
             new JOptionPane();
