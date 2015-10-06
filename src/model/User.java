@@ -5,8 +5,7 @@
  */
 package model;
 
-import dao.mysql.MySQLQuery;
-import java.util.ArrayList;
+import dao.twitter.ConnectionTwitter;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,7 +72,7 @@ public class User {
      * @return l'utilisateur créé
      */
     public int create() {
-        return MySQLQuery.createUser(this);
+        return 1; //MySQLQuery.createUser(this);
     }
 
     /**
@@ -82,7 +81,7 @@ public class User {
      * @return Utilisateur connecté
      */
     public int connect() {
-        return MySQLQuery.connectUser(this);
+        return ConnectionTwitter.connectUser(this);
     }
 
     /**
