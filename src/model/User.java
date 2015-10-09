@@ -7,8 +7,10 @@ package model;
 
 import dao.twitter.ConnectionTwitter;
 import java.util.ArrayList;
+import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
+import twitter4j.api.TimelinesResources;
 import twitter4j.auth.RequestToken;
 
 /**
@@ -20,17 +22,20 @@ public class User {
 
     //Variable membre
     private long id;
-    private String twetterName, name, location, descritpion,langue, urlPicture, lastTweet, inscription, webSite;
-
-    public String getTwetterName() {
-        return twetterName;
-    }
-
-    public void setTwetterName(String twetterName) {
-        this.twetterName = twetterName;
-    }
-    private ArrayList<Status> listOfTweet; 
+    private String twitterName, name, location, descritpion,langue, urlPicture, lastTweet, inscription, webSite;
+    private ResponseList<Status> listOfTweet; 
+    private Twitter twitter;
+    private RequestToken requestToken;
     private int nbTweet, nbFollowers, nbFriends;
+
+    
+    public String getTwitterName() {
+        return twitterName;
+    }
+
+    public void setTwitterName(String twitterName) {
+        this.twitterName = twitterName;
+    }
 
     public int getNbTweet() {
         return nbTweet;
@@ -39,9 +44,6 @@ public class User {
     public void setNbTweet(int nbTweet) {
         this.nbTweet = nbTweet;
     }
-    private Twitter twitter;
-    private RequestToken requestToken;
-
     public String getLocation() {
         return location;
     }
@@ -98,11 +100,11 @@ public class User {
         this.webSite = webSite;
     }
 
-    public ArrayList<Status> getListOfTweet() {
+    public ResponseList<Status> getListOfTweet() {
         return listOfTweet;
     }
 
-    public void setListOfTweet(ArrayList<Status> listOfTweet) {
+    public void setListOfTweet(ResponseList<Status> listOfTweet) {
         this.listOfTweet = listOfTweet;
     }
 

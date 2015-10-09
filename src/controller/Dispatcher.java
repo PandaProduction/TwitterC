@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import module.backoffice.SendTweet;
 import module.ihm.MainFrameInitializer;
 import view.MainPPFrame;
 import view.component.PandaProdTextField;
@@ -45,5 +46,10 @@ public class Dispatcher implements ActionListener {
             application.setMainFrame(new MainPPFrame());
             new MainFrameInitializer(application.getMainFrame()).execute();
         }
+    }
+    
+    public void sendTweetAction(){
+        System.err.println("Send tweet");
+        new SendTweet().execute();
     }
 }

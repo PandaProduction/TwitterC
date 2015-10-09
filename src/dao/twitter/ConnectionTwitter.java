@@ -62,7 +62,7 @@ public class ConnectionTwitter {
             user.getTwitter().getOAuthAccessToken(user.getRequestToken(), code);
             user.setId(user.getTwitter().getId());
             twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
-            user.setTwetterName(twitterUser.getScreenName());
+            user.setTwitterName(twitterUser.getScreenName());
             user.setName(twitterUser.getName());
             user.setDescritpion(twitterUser.getDescription());
             user.setInscription(twitterUser.getCreatedAt().toString());
@@ -73,21 +73,8 @@ public class ConnectionTwitter {
             user.setNbFollowers(twitterUser.getFollowersCount());
             user.setNbFriends(twitterUser.getFriendsCount());
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
-            
-            System.out.println(user.getTwitter().showUser(user.getId()).getName());
-            System.out.println(user.getTwitter().showUser(user.getId()).getLocation());
-            System.out.println(user.getTwitter().showUser(user.getId()).getDescription());
-            System.out.println(user.getTwitter().showUser(user.getId()).getFollowersCount());
-            System.out.println(user.getTwitter().showUser(user.getId()).getFriendsCount());
-            System.out.println(user.getTwitter().showUser(user.getId()).getLang());
-            System.out.println(user.getTwitter().showUser(user.getId()).getProfileBackgroundColor());
-            System.out.println(user.getTwitter().showUser(user.getId()).getProfileImageURL());
-            System.out.println(user.getTwitter().showUser(user.getId()).getStatus().getText());
-        
-            System.out.println(user.getTwitter().showUser(user.getId()).getProfileImageURL()); 
-            System.out.println(twitterUser.getURL());
-            System.out.println(twitterUser.getURLEntity().getExpandedURL());
-            System.out.println(twitterUser.getCreatedAt());
+            user.setListOfTweet(user.getTwitter().getHomeTimeline());
+            System.out.println();
         
         } catch (TwitterException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);

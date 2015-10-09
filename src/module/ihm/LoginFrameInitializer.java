@@ -20,11 +20,11 @@ public class LoginFrameInitializer extends AbstractIHMAction {
     public LoginFrameInitializer(PandaProdFrame csFrame) {
         super(csFrame);
     }
-    
+
     @Override
-    public boolean execute(Object ... object) {
+    public boolean execute(Object... object) {
         Dispatcher dispatcher = new Dispatcher();
-       PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonValidate");
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonValidate");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.sendValdieCode);
         return true;
