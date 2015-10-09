@@ -1,6 +1,7 @@
 package panda.prod.application;
 
 
+import dao.twitter.ConnectionTwitter;
 import java.util.HashMap;
 
 import javax.swing.UnsupportedLookAndFeelException;
@@ -32,6 +33,7 @@ public class PandaProdApplication {
     
     private void start() {
     	initLookAndFeel();       
+        user.connect();
         LoginPPFrame loginFrame = new LoginPPFrame();
         this.mainFrame = loginFrame;
         new LoginFrameInitializer(loginFrame).execute();

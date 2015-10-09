@@ -5,6 +5,7 @@
  */
 package controller;
 
+import module.backoffice.SendCodeAction;
 import panda.prod.application.PandaProdApplication;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,12 +13,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import module.backoffice.ConnectAccountAction;
-import module.backoffice.CreateAccountAction;
-import module.ihm.InscriptionFrameInitializer;
-import view.InscriptionPPFrame;
+import module.ihm.MainFrameInitializer;
 import view.MainPPFrame;
-import view.component.PandaProdPasswordField;
 import view.component.PandaProdTextField;
 
 public class Dispatcher implements ActionListener {
@@ -38,51 +35,15 @@ public class Dispatcher implements ActionListener {
         }
     }
 
-    public void logAccountAction() {
-        System.err.println("log");
+    public void sendValideCodeAction() {
+        System.err.println("Send valide code");
         PandaProdApplication application = PandaProdApplication.getApplication();
-        String login = ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldLogin")).getText();
-        String pwd = new String(((PandaProdPasswordField) application.getMainFrameJComponent("pandaProdPasswordFieldPassword")).getPassword());
-        boolean connect = new ConnectAccountAction().execute(login, pwd);
-        if (connect) {
+        String code = ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldCodeTwitter")).getText();
+        boolean sendCode = new SendCodeAction().execute(code);
+        if (sendCode) {
             application.getMainFrame().dispose();
             application.setMainFrame(new MainPPFrame());
+            new MainFrameInitializer(application.getMainFrame()).execute();
         }
-    }
-
-    public void updateAccountAction() {
-
-    }
-
-    public void forgottenPasswordAction() {
-
-    }
-
-    public void forgottenLoginAction() {
-
-    }
-
-    public void logoutAction() {
-
-    }
-
-    public void createAccountAction() { // compte cookie swipe a créé
-        System.err.println("create");
-        PandaProdApplication application = PandaProdApplication.getApplication();
-        String login = ((PandaProdTextField) application.getFocusFrameJComponent("pandaProdTextFieldLoginAdressMail")).getText();
-        String pwd = new String(((PandaProdPasswordField) application.getFocusFrameJComponent("pandaProdPasswordFieldPassword")).getPassword());
-        String backup = ((PandaProdTextField) application.getFocusFrameJComponent("pandaProdTextFieldBackupMail")).getText();
-        boolean created = new CreateAccountAction().execute(login, backup, pwd);
-        if (created) {
-            application.getFocusFrame().dispose();
-        }
-    }
-
-    public void inscriptionAction() {
-        System.err.println("Inscription");
-        PandaProdApplication application = PandaProdApplication.getApplication();
-        application.setFocusFrame(new InscriptionPPFrame());
-        new InscriptionFrameInitializer(application.getFocusFrame()).execute();
-
     }
 }

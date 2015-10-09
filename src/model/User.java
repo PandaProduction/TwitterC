@@ -6,9 +6,10 @@
 package model;
 
 import dao.twitter.ConnectionTwitter;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.auth.RequestToken;
 
 /**
  * Utilisateur de l'application Cookie Swipe Peut être un singleton ?
@@ -18,8 +19,108 @@ import java.util.logging.Logger;
 public class User {
 
     //Variable membre
-    private int id;
-    private String loginAdressMail, password, backupMail;
+    private long id;
+    private String twetterName, name, location, descritpion,langue, urlPicture, lastTweet, inscription, webSite;
+
+    public String getTwetterName() {
+        return twetterName;
+    }
+
+    public void setTwetterName(String twetterName) {
+        this.twetterName = twetterName;
+    }
+    private ArrayList<Status> listOfTweet; 
+    private int nbTweet, nbFollowers, nbFriends;
+
+    public int getNbTweet() {
+        return nbTweet;
+    }
+
+    public void setNbTweet(int nbTweet) {
+        this.nbTweet = nbTweet;
+    }
+    private Twitter twitter;
+    private RequestToken requestToken;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDescritpion() {
+        return descritpion;
+    }
+
+    public void setDescritpion(String descritpion) {
+        this.descritpion = descritpion;
+    }
+
+    public String getLangue() {
+        return langue;
+    }
+
+    public void setLangue(String langue) {
+        this.langue = langue;
+    }
+
+    public String getUrlPicture() {
+        return urlPicture;
+    }
+
+    public void setUrlPicture(String urlPicture) {
+        this.urlPicture = urlPicture;
+    }
+
+    public String getLastTweet() {
+        return lastTweet;
+    }
+
+    public void setLastTweet(String lastTweet) {
+        this.lastTweet = lastTweet;
+    }
+
+    public String getInscription() {
+        return inscription;
+    }
+
+    public void setInscription(String inscription) {
+        this.inscription = inscription;
+    }
+
+    public String getWebSite() {
+        return webSite;
+    }
+
+    public void setWebSite(String webSite) {
+        this.webSite = webSite;
+    }
+
+    public ArrayList<Status> getListOfTweet() {
+        return listOfTweet;
+    }
+
+    public void setListOfTweet(ArrayList<Status> listOfTweet) {
+        this.listOfTweet = listOfTweet;
+    }
+
+    public int getNbFollowers() {
+        return nbFollowers;
+    }
+
+    public void setNbFollowers(int nbFollowers) {
+        this.nbFollowers = nbFollowers;
+    }
+
+    public int getNbFriends() {
+        return nbFriends;
+    }
+
+    public void setNbFriends(int nbFriends) {
+        this.nbFriends = nbFriends;
+    }
 
     //Constrcuteur
     /**
@@ -29,129 +130,48 @@ public class User {
 
     }
 
-    /**
-     * Constructeur à utiliser lors de la connexion à un compte
-     *
-     * @param loginAdressMail login de connexion du compte
-     * @param password mot de passe de connexion du compte
-     */
-    public User(String loginAdressMail, String password) {
-        this.loginAdressMail = loginAdressMail;
-        try {
-            this.password = new Encryption().encrypt(password);
-        } catch (Exception ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-            this.password = "";
-        }
-
+    public void connect() {
+        ConnectionTwitter.connect(this);
     }
 
-    /**
-     * Constructeur à utiliser lors de la création d'un compte
-     *
-     * @param loginAdressMail login du compte et adresse principale
-     * @param backUpMail adrese courriel de récupération
-     * @param password Mot de passe du compte
-     */
-    public User(String loginAdressMail, String backUpMail, String password) {
-        this.loginAdressMail = loginAdressMail;
-        this.backupMail = backUpMail;
-        try {
-            this.password = new Encryption().encrypt(password);
-        } catch (Exception ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-            this.password = "";
-        }
-
-    }
-
-    //Fonction membre publique
-    /**
-     * Sert à créer un utilisateur dans le registre CS
-     *
-     * @return l'utilisateur créé
-     */
-    public int create() {
-        return 1; //MySQLQuery.createUser(this);
-    }
-
-    /**
-     * Sert à connecter un utilisateur à l'application CS
-     *
-     * @return Utilisateur connecté
-     */
-    public int connect() {
-        return ConnectionTwitter.connectUser(this);
-    }
-
-    /**
-     * Renvoie toutes les données de l'utilisateur
-     *
-     * @return table de hash contenant toutes les données utilisateur
-     */
-    public HashMap<String, Object> getData() {
-        return null;
-    }
-
-    /**
-     * Change les informations utilisateur (A mettre en hashmap)
-     *
-     * @param data table de hash contenant toute les données utilisateur
-     * @return Si la mise à jour des données à été correct
-     */
-    public boolean updateData(HashMap<String, Object> data) {
-        return false;
-    }
-
-    /**
-     * *
-     * Ajoute un compte courriel au préférence de l'utilisateur
-     *
-     * @param newMailAccount compte courriel à ajouter
-     * @return Si le compte courriel à bien été ajouté
-     */
     //Getter & setter
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getLoginAdressMail() {
-        return loginAdressMail;
+    public Twitter getTwitter() {
+        return twitter;
     }
 
-    public void setLoginAdressMail(String loginAdressMail) {
-        this.loginAdressMail = loginAdressMail;
+    public void setTwitter(Twitter twitter) {
+        this.twitter = twitter;
     }
 
-    public String getPassword() {
-        return password;
+    public RequestToken getRequestToken() {
+        return requestToken;
     }
 
-    public void setPassword(String password) {
-        try {
-            this.password = new Encryption().encrypt(password);
-        } catch (Exception ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void setRequestToken(RequestToken requestToken) {
+        this.requestToken = requestToken;
     }
 
-    public String getBackupMail() {
-        return backupMail;
+    public String getName() {
+        return name;
     }
 
-    public void setBackupMail(String backupMail) {
-        this.backupMail = backupMail;
+    public void setName(String name) {
+        this.name = name;
     }
 
     //equals & hashcode
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + this.id;
+        hash = 31 * hash + (int) this.id;
         return hash;
     }
 
@@ -172,7 +192,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", loginAdressMail=" + loginAdressMail + ", password=" + password + ", backupMail=" + backupMail;
+        return "User{" + "id=" + id + ", name=" + name;
     }
 
 }

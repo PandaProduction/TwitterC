@@ -25,13 +25,13 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class ConnectionTwitter {
 
-    public static int connectUser(User aThis) {
+    public static int connect(User user) {
         // Twitter connection and OAuth
         try {
             ConfigurationBuilder cb = new ConfigurationBuilder();
             cb.setDebugEnabled(true)
-                    .setOAuthConsumerKey("lH6JSO5KsVrLDb0bpRjwRKz6J")
-                    .setOAuthConsumerSecret("eO1DeOaZdKpXJc5kGEhbD9aWM2zqmOsPnLoMXQU4MOO6cc5FvW")
+                    .setOAuthConsumerKey("VF0hA818WofbLoNe4W0IbHXrJ")
+                    .setOAuthConsumerSecret("oIVeAvqPAMuEiHyuFVJxan56YNGtCfvASrr40EaitFZS8o8EJN")
                     .setOAuthAccessToken(null)
                     .setOAuthAccessTokenSecret(null);
             TwitterFactory tf = new TwitterFactory(cb.build());
@@ -40,10 +40,12 @@ public class ConnectionTwitter {
 //            System.err.println(twitter.getScreenName());
             RequestToken requestToken = twitter.getOAuthRequestToken();
             Desktop.getDesktop().browse(new URI(requestToken.getAuthorizationURL()));
+            user.setTwitter(twitter);
+            user.setRequestToken(requestToken);
             return CodeError.SUCESS;
 
-        } catch (TwitterException e) {
-            e.printStackTrace();
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
             return CodeError.CONNEXION_FAIL;
         } catch (URISyntaxException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,4 +57,42 @@ public class ConnectionTwitter {
 
     }
 
+    public static int codeValide(User user, String code) {
+        try {
+            user.getTwitter().getOAuthAccessToken(user.getRequestToken(), code);
+            user.setId(user.getTwitter().getId());
+            twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
+            user.setTwetterName(twitterUser.getScreenName());
+            user.setName(twitterUser.getName());
+            user.setDescritpion(twitterUser.getDescription());
+            user.setInscription(twitterUser.getCreatedAt().toString());
+            user.setLangue(twitterUser.getLang());
+            user.setLastTweet(twitterUser.getStatus().getText());
+            user.setLocation(twitterUser.getLocation());
+            user.setNbTweet(twitterUser.getStatusesCount());
+            user.setNbFollowers(twitterUser.getFollowersCount());
+            user.setNbFriends(twitterUser.getFriendsCount());
+            user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
+            
+            System.out.println(user.getTwitter().showUser(user.getId()).getName());
+            System.out.println(user.getTwitter().showUser(user.getId()).getLocation());
+            System.out.println(user.getTwitter().showUser(user.getId()).getDescription());
+            System.out.println(user.getTwitter().showUser(user.getId()).getFollowersCount());
+            System.out.println(user.getTwitter().showUser(user.getId()).getFriendsCount());
+            System.out.println(user.getTwitter().showUser(user.getId()).getLang());
+            System.out.println(user.getTwitter().showUser(user.getId()).getProfileBackgroundColor());
+            System.out.println(user.getTwitter().showUser(user.getId()).getProfileImageURL());
+            System.out.println(user.getTwitter().showUser(user.getId()).getStatus().getText());
+        
+            System.out.println(user.getTwitter().showUser(user.getId()).getProfileImageURL()); 
+            System.out.println(twitterUser.getURL());
+            System.out.println(twitterUser.getURLEntity().getExpandedURL());
+            System.out.println(twitterUser.getCreatedAt());
+        
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.FAILLURE;
+        }
+        return CodeError.SUCESS;
+    }
 }

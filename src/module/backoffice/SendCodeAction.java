@@ -5,28 +5,24 @@
  */
 package module.backoffice;
 
-import panda.prod.application.PandaProdApplication;
+import controller.Dispatcher;
+import dao.twitter.ConnectionTwitter;
 import errorMessage.CodeError;
 import interfaces.IAction;
 import javax.swing.JOptionPane;
-import model.User;
+import panda.prod.application.PandaProdApplication;
 
 /**
  *
  * @author Lucas
  */
-public class ConnectAccountAction implements IAction {
+public class SendCodeAction implements IAction {
 
     @Override
     public boolean execute(Object... object) {
-        String login = (String) object[0];
-        String password = (String) object[1];
+        String code = (String) object[0];
 
-        User u = PandaProdApplication.getApplication().getUser();
-        u.setLoginAdressMail(login);
-        u.setPassword(password);
-
-        if (u.connect() != CodeError.SUCESS) {
+        if (ConnectionTwitter.codeValide(PandaProdApplication.getApplication().getUser(), code) != CodeError.SUCESS) {
             new JOptionPane();
             JOptionPane.showMessageDialog(null, "Connexion impossible, merci de vérifier votre login",
                     "Connexion à Cookie Swipe", JOptionPane.ERROR_MESSAGE);
@@ -34,4 +30,5 @@ public class ConnectAccountAction implements IAction {
         }
         return true;
     }
+
 }
