@@ -23,7 +23,15 @@ public class User {
     //Variable membre
     private long id;
     private String twitterName, name, location, descritpion,langue, urlPicture, lastTweet, inscription, webSite;
-    private ResponseList<Status> listOfTweet; 
+    private ResponseList<Status> listOfTweet, listOfMyTweet; 
+
+    public ResponseList<Status> getListOfMyTweet() {
+        return listOfMyTweet;
+    }
+
+    public void setListOfMyTweet(ResponseList<Status> listOfMyTweet) {
+        this.listOfMyTweet = listOfMyTweet;
+    }
     private Twitter twitter;
     private RequestToken requestToken;
     private int nbTweet, nbFollowers, nbFriends;

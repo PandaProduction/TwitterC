@@ -11,11 +11,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.channels.SeekableByteChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Application;
 import module.backoffice.SendTweet;
 import module.ihm.MainFrameInitializer;
+import module.ihm.MyTweetFrameInitializer;
 import view.MainPPFrame;
+import view.MyTweetPPFrame;
 import view.component.PandaProdTextField;
 
 public class Dispatcher implements ActionListener {
@@ -47,9 +51,25 @@ public class Dispatcher implements ActionListener {
             new MainFrameInitializer(application.getMainFrame()).execute();
         }
     }
-    
-    public void sendTweetAction(){
+
+    public void sendTweetAction() {
         System.err.println("Send tweet");
         new SendTweet().execute();
     }
+
+    public void seeMyTweetsAction() {
+        System.err.println("See my tweet");
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        application.setFocusFrame(new MyTweetPPFrame());
+        new MyTweetFrameInitializer(application.getFocusFrame()).execute();
+    }
+
+    public void sendMyFollowersAction() {
+        System.err.println("See my followers");
+    }
+
+    public void sendMyFriendsAction() {
+        System.err.println("See my friends");
+    }
+
 }

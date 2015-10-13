@@ -9,7 +9,10 @@ import java.awt.Color;
 public class ActionName {
     
         public static final String sendValdieCode = "sendValideCode",
-                sendTweet = "sendTweet";
+                sendTweet = "sendTweet",
+                seeMyTweets = "seeMyTweets",
+                seeMyFollowers = "seeMyFollowers",
+                seeMyFriends = "seeMyFriends";
 
         public static final Color bg = new Color(1, 1, 1);
 }

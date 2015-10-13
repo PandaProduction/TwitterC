@@ -31,82 +31,102 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pandaProdLabelWelcome" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="pandaProdLabelWelcome" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pandaProdLabelTwitterName" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pandaProdLabelDescription" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pandaProdLabelLocation" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pandaProdLabelWebSite" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pandaProdLabelInscription" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="pandaProdLabelNbTweet" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="pandaProdLabelFriends" min="-2" max="-2" attributes="0"/>
+                                          <Component id="pandaProdButtonTweets" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="pandaProdLabelFollowers" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="pandaProdLabelLocation" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="pandaProdButtonFriends" alignment="0" pref="50" max="32767" attributes="0"/>
+                                              <Component id="pandaProdButtonFollowers" alignment="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="pandaProdButtonPicture" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="pandaProdLabelNickname" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pandaProdLabelTwitterName" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="pandaProdLabel10" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="pandaProdLabelNbTweet" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="pandaProdLabelFollowers" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="pandaProdLabelFriends" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="pandaProdLabel9" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="817" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="657" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="pandaProdButtonSendTweet" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="pandaProdButtonSendTweet" min="-2" pref="77" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jScrollPane1" min="-2" pref="880" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="pandaProdLabelTwitterName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pandaProdLabelNbTweet" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pandaProdLabelFollowers" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pandaProdLabelFriends" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pandaProdLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pandaProdLabelDescription" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pandaProdLabelLocation" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                      <Component id="pandaProdLabelWebSite" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pandaProdLabelInscription" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="pandaProdLabel10" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="pandaProdLabelNickname" min="-2" max="-2" attributes="0"/>
+                          <Component id="pandaProdButtonPicture" min="-2" pref="18" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="381" max="-2" attributes="0"/>
+                      <Component id="pandaProdLabelTwitterName" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Component id="pandaProdLabelNbTweet" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pandaProdButtonTweets" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="pandaProdLabelFriends" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pandaProdButtonFriends" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="pandaProdLabelFollowers" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pandaProdButtonFollowers" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="pandaProdLabelLocation" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="pandaProdButtonSendTweet" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                  <Component id="pandaProdButtonSendTweet" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="56" max="32767" attributes="0"/>
               <Component id="pandaProdLabelWelcome" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="pandaProdLabel10" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="555" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="112" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,49 +142,29 @@
         <Property name="text" type="java.lang.String" value="Nom du comtpe twitter"/>
       </Properties>
     </Component>
-    <Component class="view.component.PandaProdLabel" name="pandaProdLabelDescription">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
-      </Properties>
-    </Component>
     <Component class="view.component.PandaProdLabel" name="pandaProdLabelLocation">
       <Properties>
         <Property name="text" type="java.lang.String" value="Location"/>
       </Properties>
     </Component>
-    <Component class="view.component.PandaProdLabel" name="pandaProdLabelWebSite">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Site web"/>
-      </Properties>
-    </Component>
-    <Component class="view.component.PandaProdLabel" name="pandaProdLabelInscription">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Date d&apos;inscription"/>
-      </Properties>
-    </Component>
     <Component class="view.component.PandaProdLabel" name="pandaProdLabelNbTweet">
       <Properties>
-        <Property name="text" type="java.lang.String" value="nbTweet"/>
+        <Property name="text" type="java.lang.String" value="Tweets"/>
       </Properties>
     </Component>
     <Component class="view.component.PandaProdLabel" name="pandaProdLabelFollowers">
       <Properties>
-        <Property name="text" type="java.lang.String" value="nbAbonnement"/>
+        <Property name="text" type="java.lang.String" value="Abonn&#xe9;s"/>
       </Properties>
     </Component>
     <Component class="view.component.PandaProdLabel" name="pandaProdLabelFriends">
       <Properties>
-        <Property name="text" type="java.lang.String" value="nbAbbonn&#xe9;es"/>
-      </Properties>
-    </Component>
-    <Component class="view.component.PandaProdLabel" name="pandaProdLabel9">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="nbFavoris"/>
+        <Property name="text" type="java.lang.String" value="Abonnements"/>
       </Properties>
     </Component>
     <Component class="view.component.PandaProdLabel" name="pandaProdLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tweet"/>
+        <Property name="text" type="java.lang.String" value="Actualit&#xe9; :"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -205,6 +205,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Tweeter"/>
       </Properties>
+    </Component>
+    <Component class="view.component.PandaProdButton" name="pandaProdButtonPicture">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pandaProdButtonPictureActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="view.component.PandaProdLabel" name="pandaProdLabelNickname">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nickname"/>
+      </Properties>
+    </Component>
+    <Component class="view.component.PandaProdButton" name="pandaProdButtonTweets">
+    </Component>
+    <Component class="view.component.PandaProdButton" name="pandaProdButtonFollowers">
+    </Component>
+    <Component class="view.component.PandaProdButton" name="pandaProdButtonFriends">
     </Component>
   </SubComponents>
 </Form>

@@ -13,6 +13,8 @@ import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
+import twitter4j.GeoLocation;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -42,6 +44,7 @@ public class ConnectionTwitter {
             Desktop.getDesktop().browse(new URI(requestToken.getAuthorizationURL()));
             user.setTwitter(twitter);
             user.setRequestToken(requestToken);
+            
             return CodeError.SUCESS;
 
         } catch (TwitterException ex) {
@@ -74,8 +77,8 @@ public class ConnectionTwitter {
             user.setNbFriends(twitterUser.getFriendsCount());
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
-            System.out.println();
-        
+            user.setListOfMyTweet(user.getTwitter().getUserTimeline());
+            
         } catch (TwitterException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
             return CodeError.FAILLURE;

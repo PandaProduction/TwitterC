@@ -9,6 +9,7 @@ import controller.ActionName;
 import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
 import java.awt.Component;
+import java.awt.Cursor;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import model.User;
@@ -33,24 +34,24 @@ public class MainFrameInitializer extends AbstractIHMAction {
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();
         User user = application.getUser();
-        PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTwitterName");
+        Dispatcher dispatcher = new Dispatcher();
+
+        PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelNickname");
         label.setText(user.getName());
-        //label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTwitterName");
-        //label.setText(user.);
-        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelDescription");
-        label.setText(user.getDescritpion());
-        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelFollowers");
-        label.setText(Integer.toString(user.getNbFollowers()));
-        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelFriends");
-        label.setText(Integer.toString(user.getNbFriends()));
-        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelInscription");
-        label.setText(user.getInscription());
-        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelLocation");
-        label.setText(user.getLocation());
-        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelNbTweet");
-        label.setText(Integer.toString(user.getNbTweet()));
-        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelWebSite");
-        label.setText(user.getWebSite());
+        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTwitterName");
+        label.setText(user.getTwitterName());
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFollowers");
+        button.setText(Integer.toString(user.getNbFollowers()));
+        button.addActionListener(dispatcher);
+        button.setActionCommand(ActionName.seeMyFollowers);
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFriends");
+        button.setText(Integer.toString(user.getNbFriends()));
+        button.addActionListener(dispatcher);
+        button.setActionCommand(ActionName.seeMyFriends);
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonTweets");
+        button.setText(Integer.toString(user.getNbTweet()));
+        button.addActionListener(dispatcher);
+        button.setActionCommand(ActionName.seeMyTweets);
         JList jList = (JList) application.getMainFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
 
@@ -59,10 +60,10 @@ public class MainFrameInitializer extends AbstractIHMAction {
         }
         jList.setModel(model);
 
-        Dispatcher dispatcher = new Dispatcher();
-        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendTweet");
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendTweet");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.sendTweet);
+
         return true;
     }
 
