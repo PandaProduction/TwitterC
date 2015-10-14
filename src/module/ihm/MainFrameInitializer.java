@@ -10,7 +10,12 @@ import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JList;
 import model.User;
 import panda.prod.application.PandaProdApplication;
@@ -40,6 +45,7 @@ public class MainFrameInitializer extends AbstractIHMAction {
         label.setText(user.getName());
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTwitterName");
         label.setText(user.getTwitterName());
+        
         PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFollowers");
         button.setText(Integer.toString(user.getNbFollowers()));
         button.addActionListener(dispatcher);
@@ -51,7 +57,8 @@ public class MainFrameInitializer extends AbstractIHMAction {
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonTweets");
         button.setText(Integer.toString(user.getNbTweet()));
         button.addActionListener(dispatcher);
-        button.setActionCommand(ActionName.seeMyTweets);
+        button.setActionCommand(ActionName.seeMyTweets);        
+        
         JList jList = (JList) application.getMainFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
 
@@ -60,6 +67,16 @@ public class MainFrameInitializer extends AbstractIHMAction {
         }
         jList.setModel(model);
 
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonPicture");
+        try {
+            button.setIcon(new ImageIcon( new URL(user.getProfile())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(user.getProfile());
+        button.validate();
+        button.repaint();
+        
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendTweet");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.sendTweet);

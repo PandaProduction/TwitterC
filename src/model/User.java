@@ -6,11 +6,11 @@
 package model;
 
 import dao.twitter.ConnectionTwitter;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
-import twitter4j.api.TimelinesResources;
 import twitter4j.auth.RequestToken;
 
 /**
@@ -24,6 +24,23 @@ public class User {
     private long id;
     private String twitterName, name, location, descritpion,langue, urlPicture, lastTweet, inscription, webSite;
     private ResponseList<Status> listOfTweet, listOfMyTweet; 
+    private String profile, ban;
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    public String getBan() {
+        return ban;
+    }
+
+    public void setBan(String ban) {
+        this.ban = ban;
+    }
 
     public ResponseList<Status> getListOfMyTweet() {
         return listOfMyTweet;

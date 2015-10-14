@@ -39,14 +39,14 @@
                   <Component id="pandaProdLabelDescription" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="pandaProdLabelTwitterName" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="pandaProdLabelNickname" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="pandaProdButtonPictureProfil" min="-2" pref="114" max="-2" attributes="0"/>
+                  <Component id="pandaProdButtonPictureProfil" min="-2" pref="217" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pandaProdButtonBackgroundPicture" min="-2" pref="968" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="944" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,10 +55,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pandaProdButtonBackgroundPicture" min="-2" pref="186" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="pandaProdButtonPictureProfil" max="32767" attributes="0"/>
-                      <EmptySpace min="56" pref="56" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="pandaProdButtonPictureProfil" min="-2" pref="206" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -68,16 +65,15 @@
                       <Component id="pandaProdLabelTwitterName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pandaProdLabelDescription" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="pandaProdLabelLocation" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="pandaProdLabelWebSite" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pandaProdLabelInscriptionDate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="118" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="333" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>

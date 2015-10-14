@@ -11,15 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.channels.SeekableByteChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import module.backoffice.SendTweet;
 import module.ihm.MainFrameInitializer;
 import module.ihm.MyTweetFrameInitializer;
+import module.ihm.ProfilFrameInitializer;
 import view.MainPPFrame;
-import view.MyTweetPPFrame;
+import view.ProfilPPFrame;
 import view.component.PandaProdTextField;
 
 public class Dispatcher implements ActionListener {
@@ -60,7 +59,8 @@ public class Dispatcher implements ActionListener {
     public void seeMyTweetsAction() {
         System.err.println("See my tweet");
         PandaProdApplication application = PandaProdApplication.getApplication();
-        application.setFocusFrame(new MyTweetPPFrame());
+        application.setFocusFrame(new ProfilPPFrame());
+        new ProfilFrameInitializer(application.getFocusFrame()).execute();
         new MyTweetFrameInitializer(application.getFocusFrame()).execute();
     }
 

@@ -8,13 +8,17 @@ package dao.twitter;
 import errorMessage.CodeError;
 import java.awt.Desktop;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import model.User;
-import twitter4j.GeoLocation;
-import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -44,7 +48,7 @@ public class ConnectionTwitter {
             Desktop.getDesktop().browse(new URI(requestToken.getAuthorizationURL()));
             user.setTwitter(twitter);
             user.setRequestToken(requestToken);
-            
+
             return CodeError.SUCESS;
 
         } catch (TwitterException ex) {
@@ -68,7 +72,10 @@ public class ConnectionTwitter {
             user.setTwitterName(twitterUser.getScreenName());
             user.setName(twitterUser.getName());
             user.setDescritpion(twitterUser.getDescription());
-            user.setInscription(twitterUser.getCreatedAt().toString());
+            Calendar date = Calendar.getInstance();
+            SimpleDateFormat dateformat = new SimpleDateFormat("MM-yyyy");
+            dateformat.format(twitterUser.getCreatedAt());
+            user.setInscription(dateformat.format(twitterUser.getCreatedAt()));
             user.setLangue(twitterUser.getLang());
             user.setLastTweet(twitterUser.getStatus().getText());
             user.setLocation(twitterUser.getLocation());
@@ -78,7 +85,8 @@ public class ConnectionTwitter {
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
             user.setListOfMyTweet(user.getTwitter().getUserTimeline());
-            
+            user.setProfile(twitterUser.getProfileImageURL());
+
         } catch (TwitterException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
             return CodeError.FAILLURE;
