@@ -10,16 +10,15 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import model.User;
 import panda.prod.application.PandaProdApplication;
-import twitter4j.Status;
 import view.component.PandaProdFrame;
 
 /**
  *
  * @author Lucas
  */
-public class MyTweetFrameInitializer extends AbstractIHMAction {
+public class MyFriendFrameInitializer extends AbstractIHMAction {
 
-    public MyTweetFrameInitializer(PandaProdFrame csFrame) {
+    public MyFriendFrameInitializer(PandaProdFrame csFrame) {
         super(csFrame);
     }
 
@@ -30,8 +29,8 @@ public class MyTweetFrameInitializer extends AbstractIHMAction {
 
         JList jList = (JList) application.getFocusFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
-        for (Status s : user.getListOfMyTweet()) {
-            model.addElement(s.getText());
+        for (twitter4j.User u : user.getListOfFriends()) {
+            model.addElement(u.getName() + " @" + u.getScreenName());
         }
         jList.setModel(model);
         return true;

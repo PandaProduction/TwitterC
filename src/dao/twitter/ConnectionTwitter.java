@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import model.User;
+import twitter4j.PagableResponseList;
+import twitter4j.Paging;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -85,7 +87,13 @@ public class ConnectionTwitter {
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
             user.setListOfMyTweet(user.getTwitter().getUserTimeline());
-            user.setProfile(twitterUser.getProfileImageURL());
+            for (int i = 1; i <= user.getNbTweet() / 20; i++) {
+                user.getListOfMyTweet().addAll(user.getTwitter().getUserTimeline(new Paging(i)));
+            }
+            
+            user.setProfile(twitterUser.getBiggerProfileImageURL());
+            user.setBan(twitterUser.getProfileBannerURL());
+            user.setListOfFriends(user.getTwitter().getFriendsList(user.getId(), -1, 200));
 
         } catch (TwitterException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);

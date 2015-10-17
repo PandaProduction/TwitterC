@@ -8,8 +8,6 @@ package module.ihm;
 import controller.ActionName;
 import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
-import java.awt.Component;
-import java.awt.Cursor;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -23,7 +21,6 @@ import twitter4j.Status;
 import view.component.PandaProdButton;
 import view.component.PandaProdFrame;
 import view.component.PandaProdLabel;
-import view.component.PandaProdTextArea;
 
 /**
  *
@@ -44,9 +41,26 @@ public class MainFrameInitializer extends AbstractIHMAction {
         PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelNickname");
         label.setText(user.getName());
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTwitterName");
-        label.setText(user.getTwitterName());
-        
-        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFollowers");
+        label.setText("@" + user.getTwitterName());
+        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelDescription");
+        label.setText(user.getDescritpion());
+        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelInscriptionDate");
+        label.setText("inscrit le " + user.getInscription());
+        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelLocation");
+        label.setText(user.getLocation());
+        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelWebSite");
+        label.setText(user.getWebSite());
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonPictureProfil");
+        try {
+            button.setIcon(new ImageIcon(new URL(user.getProfile())));
+            button = (PandaProdButton) hsJcomponent.get("pandaProdButtonBackgroundPicture");
+
+            button.setIcon(new ImageIcon(new URL(user.getBan())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFollowers");
         button.setText(Integer.toString(user.getNbFollowers()));
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.seeMyFollowers);
@@ -57,8 +71,8 @@ public class MainFrameInitializer extends AbstractIHMAction {
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonTweets");
         button.setText(Integer.toString(user.getNbTweet()));
         button.addActionListener(dispatcher);
-        button.setActionCommand(ActionName.seeMyTweets);        
-        
+        button.setActionCommand(ActionName.seeMyTweets);
+
         JList jList = (JList) application.getMainFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
 
@@ -67,16 +81,6 @@ public class MainFrameInitializer extends AbstractIHMAction {
         }
         jList.setModel(model);
 
-        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonPicture");
-        try {
-            button.setIcon(new ImageIcon( new URL(user.getProfile())));
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println(user.getProfile());
-        button.validate();
-        button.repaint();
-        
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendTweet");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.sendTweet);

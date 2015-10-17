@@ -38,7 +38,6 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
         pandaProdLabel8 = new view.component.PandaProdLabel();
         pandaProdLabelWelcome = new view.component.PandaProdLabel();
         pandaProdLabelTwitterName = new view.component.PandaProdLabel();
-        pandaProdLabelLocation = new view.component.PandaProdLabel();
         pandaProdLabelNbTweet = new view.component.PandaProdLabel();
         pandaProdLabelFollowers = new view.component.PandaProdLabel();
         pandaProdLabelFriends = new view.component.PandaProdLabel();
@@ -48,11 +47,16 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaNewTweet = new javax.swing.JTextArea();
         pandaProdButtonSendTweet = new view.component.PandaProdButton();
-        pandaProdButtonPicture = new view.component.PandaProdButton();
+        pandaProdButtonPictureProfil = new view.component.PandaProdButton();
         pandaProdLabelNickname = new view.component.PandaProdLabel();
         pandaProdButtonTweets = new view.component.PandaProdButton();
         pandaProdButtonFollowers = new view.component.PandaProdButton();
         pandaProdButtonFriends = new view.component.PandaProdButton();
+        pandaProdButtonBackgroundPicture = new view.component.PandaProdButton();
+        pandaProdLabelDescription = new view.component.PandaProdLabel();
+        pandaProdLabelLocation = new view.component.PandaProdLabel();
+        pandaProdLabelWebSite = new view.component.PandaProdLabel();
+        pandaProdLabelInscriptionDate = new view.component.PandaProdLabel();
 
         pandaProdLabel8.setText("pandaProdLabel8");
 
@@ -61,8 +65,6 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
         pandaProdLabelWelcome.setText("WELCOME IN PANDA PRODUCTION JAVA FRAMEWORK");
 
         pandaProdLabelTwitterName.setText("Nom du comtpe twitter");
-
-        pandaProdLabelLocation.setText("Location");
 
         pandaProdLabelNbTweet.setText("Tweets");
 
@@ -85,13 +87,21 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
 
         pandaProdButtonSendTweet.setText("Tweeter");
 
-        pandaProdButtonPicture.addActionListener(new java.awt.event.ActionListener() {
+        pandaProdButtonPictureProfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pandaProdButtonPictureActionPerformed(evt);
+                pandaProdButtonPictureProfilActionPerformed(evt);
             }
         });
 
         pandaProdLabelNickname.setText("Nickname");
+
+        pandaProdLabelDescription.setText("pandaProdLabel1");
+
+        pandaProdLabelLocation.setText("pandaProdLabel2");
+
+        pandaProdLabelWebSite.setText("pandaProdLabel3");
+
+        pandaProdLabelInscriptionDate.setText("pandaProdLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,7 +110,9 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pandaProdLabelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pandaProdLabelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -110,42 +122,75 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
                                     .addComponent(pandaProdLabelFriends, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pandaProdButtonTweets, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pandaProdLabelFollowers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pandaProdLabelLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(pandaProdButtonFriends, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                                         .addComponent(pandaProdButtonFollowers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                    .addComponent(pandaProdButtonPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(pandaProdLabelLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pandaProdLabelWebSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pandaProdLabelInscriptionDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
+                                .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pandaProdLabelNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pandaProdLabelTwitterName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(104, 104, 104)
+                                    .addComponent(pandaProdLabelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pandaProdButtonPictureProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(pandaProdLabelNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(pandaProdLabelTwitterName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pandaProdLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(pandaProdButtonSendTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                                .addGap(207, 207, 207)
+                                .addComponent(pandaProdButtonBackgroundPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(pandaProdButtonSendTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 42, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(104, 104, 104))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(268, 268, 268)
+                .addComponent(pandaProdLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pandaProdLabelNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pandaProdLabelTwitterName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pandaProdButtonPictureProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(pandaProdLabelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pandaProdButtonBackgroundPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addComponent(pandaProdLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pandaProdLabelNbTweet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addComponent(pandaProdLabelNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(pandaProdLabelTwitterName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(pandaProdButtonPicture, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(19, 19, 19)
-                        .addComponent(pandaProdLabelNbTweet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(pandaProdButtonSendTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pandaProdButtonTweets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -156,31 +201,23 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
                         .addComponent(pandaProdLabelFollowers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pandaProdButtonFollowers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(45, 45, 45)
                         .addComponent(pandaProdLabelLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pandaProdButtonSendTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(129, 129, 129)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pandaProdLabelWebSite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pandaProdLabelInscriptionDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(pandaProdLabelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pandaProdLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pandaProdButtonPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pandaProdButtonPictureActionPerformed
+    private void pandaProdButtonPictureProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pandaProdButtonPictureProfilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pandaProdButtonPictureActionPerformed
+    }//GEN-LAST:event_pandaProdButtonPictureProfilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,19 +259,23 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaNewTweet;
+    private view.component.PandaProdButton pandaProdButtonBackgroundPicture;
     private view.component.PandaProdButton pandaProdButtonFollowers;
     private view.component.PandaProdButton pandaProdButtonFriends;
-    private view.component.PandaProdButton pandaProdButtonPicture;
+    private view.component.PandaProdButton pandaProdButtonPictureProfil;
     private view.component.PandaProdButton pandaProdButtonSendTweet;
     private view.component.PandaProdButton pandaProdButtonTweets;
     private view.component.PandaProdLabel pandaProdLabel10;
     private view.component.PandaProdLabel pandaProdLabel8;
+    private view.component.PandaProdLabel pandaProdLabelDescription;
     private view.component.PandaProdLabel pandaProdLabelFollowers;
     private view.component.PandaProdLabel pandaProdLabelFriends;
+    private view.component.PandaProdLabel pandaProdLabelInscriptionDate;
     private view.component.PandaProdLabel pandaProdLabelLocation;
     private view.component.PandaProdLabel pandaProdLabelNbTweet;
     private view.component.PandaProdLabel pandaProdLabelNickname;
     private view.component.PandaProdLabel pandaProdLabelTwitterName;
+    private view.component.PandaProdLabel pandaProdLabelWebSite;
     private view.component.PandaProdLabel pandaProdLabelWelcome;
     // End of variables declaration//GEN-END:variables
 
@@ -248,15 +289,20 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
 
     private void putComponents() {
         hsJcomponent.put("pandaProdLabelTwitterName", pandaProdLabelTwitterName);
-        hsJcomponent.put("pandaProdLabelLocation", pandaProdLabelLocation);
         hsJcomponent.put("jListTweet", jListTweet);
         hsJcomponent.put("jTextAreaNewTweet", jTextAreaNewTweet);
         hsJcomponent.put("pandaProdButtonSendTweet", pandaProdButtonSendTweet);
         hsJcomponent.put("pandaProdButtonFollowers", pandaProdButtonFollowers);
         hsJcomponent.put("pandaProdButtonFriends", pandaProdButtonFriends);
         hsJcomponent.put("pandaProdButtonTweets", pandaProdButtonTweets);
-        hsJcomponent.put("pandaProdButtonPicture", pandaProdButtonPicture);
-        hsJcomponent.put("pandaProdLabelNickname", pandaProdLabelNickname);        
+        hsJcomponent.put("pandaProdButtonPictureProfil", pandaProdButtonPictureProfil);
+        hsJcomponent.put("pandaProdButtonBackgroundPicture", pandaProdButtonBackgroundPicture);
+        hsJcomponent.put("pandaProdLabelNickname", pandaProdLabelNickname);
+        hsJcomponent.put("pandaProdLabelWebSite", pandaProdLabelWebSite);
+        hsJcomponent.put("pandaProdLabelDescription", pandaProdLabelDescription);
+        hsJcomponent.put("pandaProdLabelInscriptionDate", pandaProdLabelInscriptionDate);
+        hsJcomponent.put("pandaProdLabelLocation", pandaProdLabelLocation);
+
     }
 
     @Override

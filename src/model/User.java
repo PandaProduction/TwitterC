@@ -6,8 +6,7 @@
 package model;
 
 import dao.twitter.ConnectionTwitter;
-import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
+import twitter4j.PagableResponseList;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -24,7 +23,24 @@ public class User {
     private long id;
     private String twitterName, name, location, descritpion,langue, urlPicture, lastTweet, inscription, webSite;
     private ResponseList<Status> listOfTweet, listOfMyTweet; 
+    private PagableResponseList<twitter4j.User> listOfFriends, listOfFollowers;
     private String profile, ban;
+
+    public PagableResponseList<twitter4j.User> getListOfFriends() {
+        return listOfFriends;
+    }
+
+    public void setListOfFriends(PagableResponseList<twitter4j.User> listOfFriends) {
+        this.listOfFriends = listOfFriends;
+    }
+
+    public PagableResponseList<twitter4j.User> getListOfFollowers() {
+        return listOfFollowers;
+    }
+
+    public void setListOfFollowers(PagableResponseList<twitter4j.User> listOfFollowers) {
+        this.listOfFollowers = listOfFollowers;
+    }
 
     public String getProfile() {
         return profile;

@@ -7,11 +7,14 @@ package module.ihm;
 
 import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import model.User;
 import panda.prod.application.PandaProdApplication;
-import twitter4j.Status;
+import view.component.PandaProdButton;
 import view.component.PandaProdFrame;
 import view.component.PandaProdLabel;
 
@@ -43,8 +46,15 @@ public class ProfilFrameInitializer extends AbstractIHMAction {
         label.setText(user.getLocation());
         label = (PandaProdLabel) application.getFocusFrameJComponent("pandaProdLabelWebSite");
         label.setText(user.getWebSite());
-        
-        
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonPictureProfil");
+        try {
+            button.setIcon(new ImageIcon( new URL(user.getProfile())));
+            button = (PandaProdButton) hsJcomponent.get("pandaProdButtonBackgroundPicture");
+            
+            button.setIcon(new ImageIcon(new URL(user.getBan())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return true;
     }
 }

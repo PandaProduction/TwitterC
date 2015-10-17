@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import module.backoffice.SendTweet;
 import module.ihm.MainFrameInitializer;
+import module.ihm.MyFriendFrameInitializer;
 import module.ihm.MyTweetFrameInitializer;
 import module.ihm.ProfilFrameInitializer;
 import view.MainPPFrame;
@@ -64,12 +65,16 @@ public class Dispatcher implements ActionListener {
         new MyTweetFrameInitializer(application.getFocusFrame()).execute();
     }
 
-    public void sendMyFollowersAction() {
+    public void seeMyFollowersAction() {
         System.err.println("See my followers");
     }
 
-    public void sendMyFriendsAction() {
+    public void seeMyFriendsAction() {
         System.err.println("See my friends");
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        application.setFocusFrame(new ProfilPPFrame());
+        new ProfilFrameInitializer(application.getFocusFrame()).execute();
+        new MyFriendFrameInitializer(application.getFocusFrame()).execute();
     }
 
 }
