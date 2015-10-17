@@ -10,13 +10,29 @@ import dao.twitter.ConnectionTwitter;
 import errorMessage.CodeError;
 import interfaces.IAction;
 import javax.swing.JOptionPane;
+import module.ihm.MainFrameInitializer;
 import panda.prod.application.PandaProdApplication;
+import view.component.PandaProdFrame;
 
 /**
  *
  * @author Lucas
  */
 public class SendCodeAction implements IAction {
+
+    private static SendCodeAction instance = null;
+
+    private SendCodeAction() {
+        
+    }
+
+    public static SendCodeAction getSendCodeAction() {
+        if (instance == null) {
+            instance = new SendCodeAction();
+        }
+
+        return instance;
+    }
 
     @Override
     public boolean execute(Object... object) {

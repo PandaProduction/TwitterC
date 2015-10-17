@@ -12,7 +12,8 @@ public class ActionName {
                 sendTweet = "sendTweet",
                 seeMyTweets = "seeMyTweets",
                 seeMyFollowers = "seeMyFollowers",
-                seeMyFriends = "seeMyFriends";
+                seeMyFriends = "seeMyFriends",
+                back = "back";
 
         public static final Color bg = new Color(1, 1, 1);
 }

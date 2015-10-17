@@ -81,9 +81,9 @@ public class ConnectionTwitter {
             user.setNbFriends(twitterUser.getFriendsCount());
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
-            for(int i = 1; i <= 5; i++){
+            /*for(int i = 1; i <= 5; i++){
                 user.getListOfTweet().addAll(user.getTwitter().getHomeTimeline(new Paging(i)));
-            }
+            }*/
             
             user.setListOfMyTweet(user.getTwitter().getUserTimeline());
             for (int i = 1; i <= user.getNbTweet() / 20; i++) {

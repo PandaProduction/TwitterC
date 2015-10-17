@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import model.User;
 import panda.prod.application.PandaProdApplication;
+import view.component.PandaProdButton;
 import view.component.PandaProdFrame;
 import view.component.PandaProdLabel;
 
@@ -19,14 +20,27 @@ import view.component.PandaProdLabel;
  */
 public class MyFriendFrameInitializer extends AbstractIHMAction {
 
-    public MyFriendFrameInitializer(PandaProdFrame csFrame) {
+    private static MyFriendFrameInitializer instance = null;
+    
+    private MyFriendFrameInitializer(PandaProdFrame csFrame){
         super(csFrame);
+    }
+    
+    public static MyFriendFrameInitializer getMyFriendFrameInitializer(PandaProdFrame csFrame){
+        if(instance == null){
+            instance = new MyFriendFrameInitializer(csFrame);
+        }
+        
+        return instance;
     }
 
     @Override
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();
         User user = application.getUser();
+
+        PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonBack");
+        button.setVisible(true);
 
         PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTitle");
         label.setText("Mes abonnements");

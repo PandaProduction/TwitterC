@@ -28,15 +28,25 @@ import view.component.PandaProdLabel;
  */
 public class MainFrameInitializer extends AbstractIHMAction {
 
-    public MainFrameInitializer(PandaProdFrame csFrame) {
+    private static MainFrameInitializer instance = null;
+
+    private MainFrameInitializer(PandaProdFrame csFrame) {
         super(csFrame);
+    }
+
+    public static MainFrameInitializer getMainFrameInitializer(PandaProdFrame csFrame) {
+        if (instance == null) {
+            instance = new MainFrameInitializer(csFrame);
+        }
+
+        return instance;
     }
 
     @Override
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();
         User user = application.getUser();
-        Dispatcher dispatcher = new Dispatcher();
+        Dispatcher dispatcher = Dispatcher.getDispatcher();
 
         PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelNickname");
         label.setText(user.getName());
@@ -86,6 +96,10 @@ public class MainFrameInitializer extends AbstractIHMAction {
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonSendTweet");
         button.addActionListener(dispatcher);
         button.setActionCommand(ActionName.sendTweet);
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonBack");
+        button.setVisible(false);
+        button.addActionListener(dispatcher);
+        button.setActionCommand(ActionName.back);
 
         return true;
     }

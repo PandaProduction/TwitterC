@@ -19,6 +19,19 @@ import twitter4j.TwitterException;
  */
 public class SendTweet implements IAction{
 
+    private static SendTweet instance = null;
+
+    private SendTweet() {
+        
+    }
+
+    public static SendTweet getSendTweet() {
+        if (instance == null) {
+            instance = new SendTweet();
+        }
+
+        return instance;
+    }
     @Override
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();

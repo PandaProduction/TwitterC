@@ -22,11 +22,23 @@ import view.component.PandaProdTextField;
 
 public class Dispatcher implements ActionListener {
 
+    private static Dispatcher instance = null;
     /**
      * Distribue les actions de l'utilsiateur à des traitements
      *
      * @param e Evénement décrivant l'action à réaliser
      */
+    private Dispatcher(){
+        
+    }
+    
+    public static Dispatcher getDispatcher(){
+        
+        if(instance == null){
+            instance = new Dispatcher();
+        }
+        return instance;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionName = e.getActionCommand() + "Action";
@@ -42,23 +54,23 @@ public class Dispatcher implements ActionListener {
         System.err.println("Send valide code");
         PandaProdApplication application = PandaProdApplication.getApplication();
         String code = ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldCodeTwitter")).getText();
-        boolean sendCode = new SendCodeAction().execute(code);
+        boolean sendCode = SendCodeAction.getSendCodeAction().execute(code);
         if (sendCode) {
             application.getMainFrame().dispose();
             application.setMainFrame(new MainPPFrame());
-            new MainFrameInitializer(application.getMainFrame()).execute();
+            MainFrameInitializer.getMainFrameInitializer(application.getMainFrame()).execute();
         }
     }
 
     public void sendTweetAction() {
         System.err.println("Send tweet");
-        new SendTweet().execute();
+        SendTweet.getSendTweet().execute();
     }
 
     public void seeMyTweetsAction() {
         System.err.println("See my tweet");
         PandaProdApplication application = PandaProdApplication.getApplication();
-        new MyTweetFrameInitializer(application.getMainFrame()).execute();
+        MyTweetFrameInitializer.getMyTweetFrameInitializer(application.getMainFrame()).execute();
     }
 
     public void seeMyFollowersAction() {
@@ -68,7 +80,13 @@ public class Dispatcher implements ActionListener {
     public void seeMyFriendsAction() {
         System.err.println("See my friends");
         PandaProdApplication application = PandaProdApplication.getApplication();
-        new MyFriendFrameInitializer(application.getMainFrame()).execute();
+        MyFriendFrameInitializer.getMyFriendFrameInitializer(application.getMainFrame()).execute();
+    }
+
+    public void backAction() {
+        System.err.println("back");
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        MainFrameInitializer.getMainFrameInitializer(application.getMainFrame()).execute();
     }
 
 }
