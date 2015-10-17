@@ -50,6 +50,8 @@ public class MainFrameInitializer extends AbstractIHMAction {
         label.setText(user.getLocation());
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelWebSite");
         label.setText(user.getWebSite());
+        label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTitle");
+        label.setText("Actualité");
         PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonPictureProfil");
         try {
             button.setIcon(new ImageIcon(new URL(user.getProfile())));

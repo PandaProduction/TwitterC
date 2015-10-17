@@ -11,6 +11,7 @@ import javax.swing.JList;
 import model.User;
 import panda.prod.application.PandaProdApplication;
 import view.component.PandaProdFrame;
+import view.component.PandaProdLabel;
 
 /**
  *
@@ -27,7 +28,10 @@ public class MyFriendFrameInitializer extends AbstractIHMAction {
         PandaProdApplication application = PandaProdApplication.getApplication();
         User user = application.getUser();
 
-        JList jList = (JList) application.getFocusFrameJComponent("jListTweet");
+        PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTitle");
+        label.setText("Mes abonnements");
+        
+        JList jList = (JList) application.getMainFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
         for (twitter4j.User u : user.getListOfFriends()) {
             model.addElement(u.getName() + " @" + u.getScreenName());

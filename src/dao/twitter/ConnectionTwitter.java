@@ -8,18 +8,13 @@ package dao.twitter;
 import errorMessage.CodeError;
 import java.awt.Desktop;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import model.User;
-import twitter4j.PagableResponseList;
 import twitter4j.Paging;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -86,6 +81,10 @@ public class ConnectionTwitter {
             user.setNbFriends(twitterUser.getFriendsCount());
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
+            for(int i = 1; i <= 5; i++){
+                user.getListOfTweet().addAll(user.getTwitter().getHomeTimeline(new Paging(i)));
+            }
+            
             user.setListOfMyTweet(user.getTwitter().getUserTimeline());
             for (int i = 1; i <= user.getNbTweet() / 20; i++) {
                 user.getListOfMyTweet().addAll(user.getTwitter().getUserTimeline(new Paging(i)));

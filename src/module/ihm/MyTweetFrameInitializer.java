@@ -12,6 +12,7 @@ import model.User;
 import panda.prod.application.PandaProdApplication;
 import twitter4j.Status;
 import view.component.PandaProdFrame;
+import view.component.PandaProdLabel;
 
 /**
  *
@@ -28,7 +29,10 @@ public class MyTweetFrameInitializer extends AbstractIHMAction {
         PandaProdApplication application = PandaProdApplication.getApplication();
         User user = application.getUser();
 
-        JList jList = (JList) application.getFocusFrameJComponent("jListTweet");
+        PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTitle");
+        label.setText("Mes tweets");
+        
+        JList jList = (JList) application.getMainFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
         for (Status s : user.getListOfMyTweet()) {
             model.addElement(s.getText());

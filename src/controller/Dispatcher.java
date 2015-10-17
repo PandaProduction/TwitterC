@@ -17,9 +17,7 @@ import module.backoffice.SendTweet;
 import module.ihm.MainFrameInitializer;
 import module.ihm.MyFriendFrameInitializer;
 import module.ihm.MyTweetFrameInitializer;
-import module.ihm.ProfilFrameInitializer;
 import view.MainPPFrame;
-import view.ProfilPPFrame;
 import view.component.PandaProdTextField;
 
 public class Dispatcher implements ActionListener {
@@ -60,9 +58,7 @@ public class Dispatcher implements ActionListener {
     public void seeMyTweetsAction() {
         System.err.println("See my tweet");
         PandaProdApplication application = PandaProdApplication.getApplication();
-        application.setFocusFrame(new ProfilPPFrame());
-        new ProfilFrameInitializer(application.getFocusFrame()).execute();
-        new MyTweetFrameInitializer(application.getFocusFrame()).execute();
+        new MyTweetFrameInitializer(application.getMainFrame()).execute();
     }
 
     public void seeMyFollowersAction() {
@@ -72,9 +68,7 @@ public class Dispatcher implements ActionListener {
     public void seeMyFriendsAction() {
         System.err.println("See my friends");
         PandaProdApplication application = PandaProdApplication.getApplication();
-        application.setFocusFrame(new ProfilPPFrame());
-        new ProfilFrameInitializer(application.getFocusFrame()).execute();
-        new MyFriendFrameInitializer(application.getFocusFrame()).execute();
+        new MyFriendFrameInitializer(application.getMainFrame()).execute();
     }
 
 }
