@@ -13,7 +13,8 @@ public class ActionName {
                 seeMyTweets = "seeMyTweets",
                 seeMyFollowers = "seeMyFollowers",
                 seeMyFriends = "seeMyFriends",
-                back = "back";
+                back = "back",
+                retweet = "retweet";
 
         public static final Color bg = new Color(1, 1, 1);
 }

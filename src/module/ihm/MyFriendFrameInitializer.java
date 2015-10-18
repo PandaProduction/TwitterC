@@ -21,16 +21,16 @@ import view.component.PandaProdLabel;
 public class MyFriendFrameInitializer extends AbstractIHMAction {
 
     private static MyFriendFrameInitializer instance = null;
-    
-    private MyFriendFrameInitializer(PandaProdFrame csFrame){
+
+    private MyFriendFrameInitializer(PandaProdFrame csFrame) {
         super(csFrame);
     }
-    
-    public static MyFriendFrameInitializer getMyFriendFrameInitializer(PandaProdFrame csFrame){
-        if(instance == null){
+
+    public static MyFriendFrameInitializer getMyFriendFrameInitializer(PandaProdFrame csFrame) {
+        if (instance == null) {
             instance = new MyFriendFrameInitializer(csFrame);
         }
-        
+
         return instance;
     }
 
@@ -38,17 +38,19 @@ public class MyFriendFrameInitializer extends AbstractIHMAction {
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();
         User user = application.getUser();
-
+        user.loadMyFriends();
         PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonBack");
         button.setVisible(true);
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonRetweet");
+        button.setVisible(false);
 
         PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTitle");
         label.setText("Mes abonnements");
-        
+
         JList jList = (JList) application.getMainFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
         for (twitter4j.User u : user.getListOfFriends()) {
-            model.addElement(u.getName() + " @" + u.getScreenName());
+            model.addElement(u);
         }
         jList.setModel(model);
         return true;

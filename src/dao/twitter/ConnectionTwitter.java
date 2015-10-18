@@ -39,8 +39,6 @@ public class ConnectionTwitter {
                     .setOAuthAccessTokenSecret(null);
             TwitterFactory tf = new TwitterFactory(cb.build());
             Twitter twitter = tf.getInstance();
-//            twitter.setOAuthConsumer("pykpyky", "plefechaat");
-//            System.err.println(twitter.getScreenName());
             RequestToken requestToken = twitter.getOAuthRequestToken();
             Desktop.getDesktop().browse(new URI(requestToken.getAuthorizationURL()));
             user.setTwitter(twitter);
@@ -64,40 +62,101 @@ public class ConnectionTwitter {
     public static int codeValide(User user, String code) {
         try {
             user.getTwitter().getOAuthAccessToken(user.getRequestToken(), code);
+            loadDataOnProfile(user);
+            return CodeError.SUCESS;
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.FAILLURE;
+        }
+    }
+
+    public static int loadDataOnProfile(User user) {
+        System.err.println("loadDataOnProfile");
+        try {
             user.setId(user.getTwitter().getId());
             twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
             user.setTwitterName(twitterUser.getScreenName());
             user.setName(twitterUser.getName());
             user.setDescritpion(twitterUser.getDescription());
-            Calendar date = Calendar.getInstance();
             SimpleDateFormat dateformat = new SimpleDateFormat("MM-yyyy");
             dateformat.format(twitterUser.getCreatedAt());
             user.setInscription(dateformat.format(twitterUser.getCreatedAt()));
             user.setLangue(twitterUser.getLang());
-            user.setLastTweet(twitterUser.getStatus().getText());
             user.setLocation(twitterUser.getLocation());
+            user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
+            user.setProfile(twitterUser.getBiggerProfileImageURL());
+            user.setBan(twitterUser.getProfileBannerURL());
+            return CodeError.SUCESS;
+
+        } catch (TwitterException | IllegalStateException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.FAILLURE;
+        }
+    }
+
+    public static int loadNumber(User user) {
+        System.err.println("loadNumber");
+        try {
+            twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
             user.setNbTweet(twitterUser.getStatusesCount());
             user.setNbFollowers(twitterUser.getFollowersCount());
             user.setNbFriends(twitterUser.getFriendsCount());
-            user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
+
+        } catch (TwitterException | IllegalStateException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.FAILLURE;
+        }
+        return CodeError.SUCESS;
+    }
+
+    public static int loadMyTweet(User user) {
+        System.err.println("loadMyTweet");
+        try {
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
-            /*for(int i = 1; i <= 5; i++){
-                user.getListOfTweet().addAll(user.getTwitter().getHomeTimeline(new Paging(i)));
-            }*/
-            
             user.setListOfMyTweet(user.getTwitter().getUserTimeline());
             for (int i = 1; i <= user.getNbTweet() / 20; i++) {
                 user.getListOfMyTweet().addAll(user.getTwitter().getUserTimeline(new Paging(i)));
             }
-            
-            user.setProfile(twitterUser.getBiggerProfileImageURL());
-            user.setBan(twitterUser.getProfileBannerURL());
-            user.setListOfFriends(user.getTwitter().getFriendsList(user.getId(), -1, 200));
+
+            return CodeError.SUCESS;
+        } catch (TwitterException | IllegalStateException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.FAILLURE;
+        }
+    }
+
+    public static int loadMyFollowers(User user) {
+        System.err.println("loadMyFollowers");
+        try {
+            user.setListOfFollowers(user.getTwitter().getFollowersList(user.getId(), -1, 200));
+            return CodeError.SUCESS;
 
         } catch (TwitterException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
             return CodeError.FAILLURE;
         }
-        return CodeError.SUCESS;
+    }
+
+    public static int loadMyFriends(User user) {
+        System.err.println("loadMyFriends");
+        try {
+            user.setListOfFriends(user.getTwitter().getFriendsList(user.getId(), -1, 200));
+            return CodeError.SUCESS;
+
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.FAILLURE;
+        }
+    }
+
+    public static int loadTimeLine(User user) {
+        System.err.println("loadTimeLine");
+        try {
+            user.setListOfTweet(user.getTwitter().getHomeTimeline());
+            return CodeError.SUCESS;
+        } catch (TwitterException ex) {
+            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.FAILLURE;
+        }
     }
 }

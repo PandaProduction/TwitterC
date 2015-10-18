@@ -1,11 +1,7 @@
 package panda.prod.application;
 
-
-import dao.twitter.ConnectionTwitter;
 import java.util.HashMap;
-
 import javax.swing.UnsupportedLookAndFeelException;
-
 import model.User;
 import module.ihm.LoginFrameInitializer;
 import view.LoginPPFrame;

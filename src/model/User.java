@@ -238,4 +238,27 @@ public class User {
         return "User{" + "id=" + id + ", name=" + name;
     }
 
+    public int loadDataOnProfil() {
+        return dao.twitter.ConnectionTwitter.loadDataOnProfile(this);
+    }
+        
+    public int loadNumber() {
+        return dao.twitter.ConnectionTwitter.loadNumber(this);
+    }
+    
+    public int loadMyFollowers(){
+        return dao.twitter.ConnectionTwitter.loadMyFollowers(this);
+    }
+    
+    public int loadMyFriends(){
+        return dao.twitter.ConnectionTwitter.loadMyFriends(this);
+    }
+    
+    public int loadMyTweet(){
+        return dao.twitter.ConnectionTwitter.loadMyTweet(this);
+    }
+    
+    public int loadTimeLine(){
+        return dao.twitter.ConnectionTwitter.loadTimeLine(this);
+    }
 }

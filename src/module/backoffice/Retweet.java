@@ -5,33 +5,37 @@
  */
 package module.backoffice;
 
+import errorMessage.CodeError;
 import interfaces.IAction;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JList;
 import javax.swing.JTextArea;
 import model.User;
 import panda.prod.application.PandaProdApplication;
+import twitter4j.Status;
 import twitter4j.TwitterException;
 
 /**
  *
  * @author Lucas
  */
-public class SendTweet implements IAction{
+public class Retweet implements IAction {
 
-    private static SendTweet instance = null;
+    private static Retweet instance;
 
-    private SendTweet() {
-        
+    private Retweet() {
+
     }
 
-    public static SendTweet getSendTweet() {
+    public static Retweet getRetweet() {
         if (instance == null) {
-            instance = new SendTweet();
+            instance = new Retweet();
         }
 
         return instance;
     }
+
     @Override
     public boolean execute(Object... object) {
         PandaProdApplication application = PandaProdApplication.getApplication();
@@ -39,12 +43,15 @@ public class SendTweet implements IAction{
         user.loadMyTweet();
         user.loadNumber();
         try {
-            user.getTwitter().updateStatus(((JTextArea) application.getMainFrameJComponent("jTextAreaNewTweet")).getText());
+            JList jlist = (JList) application.getMainFrameJComponent("jListTweet");
+            Status status = (Status) jlist.getSelectedValue();
+            user.getTwitter().retweetStatus(status.getId());
         } catch (TwitterException ex) {
             Logger.getLogger(SendTweet.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+
         return true;
     }
-    
+
 }

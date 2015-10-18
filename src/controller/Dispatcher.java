@@ -13,8 +13,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import module.backoffice.Retweet;
 import module.backoffice.SendTweet;
 import module.ihm.MainFrameInitializer;
+import module.ihm.MyFollowerFrameInitializer;
 import module.ihm.MyFriendFrameInitializer;
 import module.ihm.MyTweetFrameInitializer;
 import view.MainPPFrame;
@@ -23,22 +25,24 @@ import view.component.PandaProdTextField;
 public class Dispatcher implements ActionListener {
 
     private static Dispatcher instance = null;
+
     /**
      * Distribue les actions de l'utilsiateur à des traitements
      *
      * @param e Evénement décrivant l'action à réaliser
      */
-    private Dispatcher(){
-        
+    private Dispatcher() {
+
     }
-    
-    public static Dispatcher getDispatcher(){
-        
-        if(instance == null){
+
+    public static Dispatcher getDispatcher() {
+
+        if (instance == null) {
             instance = new Dispatcher();
         }
         return instance;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionName = e.getActionCommand() + "Action";
@@ -75,6 +79,9 @@ public class Dispatcher implements ActionListener {
 
     public void seeMyFollowersAction() {
         System.err.println("See my followers");
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        MyFollowerFrameInitializer.getMyFollowerFrameInitializer(application.getMainFrame()).execute();
+
     }
 
     public void seeMyFriendsAction() {
@@ -87,6 +94,11 @@ public class Dispatcher implements ActionListener {
         System.err.println("back");
         PandaProdApplication application = PandaProdApplication.getApplication();
         MainFrameInitializer.getMainFrameInitializer(application.getMainFrame()).execute();
+    }
+
+    public void retweetAction() {
+        System.err.println("retweet");
+        Retweet.getRetweet().execute();
     }
 
 }

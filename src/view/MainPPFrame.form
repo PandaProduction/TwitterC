@@ -70,17 +70,19 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="713" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="pandaProdButtonSendTweet" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace pref="71" max="32767" attributes="0"/>
-                                      <Component id="jScrollPane2" min="-2" pref="685" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Component id="pandaProdButtonSendTweet" min="-2" pref="106" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
+                                  <Component id="jScrollPane1" alignment="1" min="-2" pref="900" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
@@ -92,15 +94,13 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="pandaProdButtonBack" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="pandaProdButtonBack" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="pandaProdButtonRetweet" min="-2" pref="94" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="43" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="900" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                              <EmptySpace min="84" pref="84" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -135,6 +135,8 @@
                       <Component id="pandaProdLabelNbTweet" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <Component id="pandaProdButtonRetweet" min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="pandaProdButtonBack" min="-2" pref="18" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
@@ -288,7 +290,12 @@
     </Component>
     <Component class="view.component.PandaProdButton" name="pandaProdButtonBack">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Retour"/>
+        <Property name="text" type="java.lang.String" value="Retour &#xe0; l&apos;actualit&#xe9;"/>
+      </Properties>
+    </Component>
+    <Component class="view.component.PandaProdButton" name="pandaProdButtonRetweet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Retweet"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -4,11 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/dao/twitter/ConnectionTwitter.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/module/backoffice/SendCodeAction.java</file>
+            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/module/ihm/LoginFrameInitializer.java</file>
             <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/controller/Dispatcher.java</file>
-            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/controller/ActionName.java</file>
             <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/module/ihm/MyFriendFrameInitializer.java</file>
             <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/model/User.java</file>
-            <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/module/ihm/ProfilFrameInitializer.java</file>
             <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/module/ihm/MainFrameInitializer.java</file>
             <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/view/MainPPFrame.java</file>
             <file>file:/C:/Users/Lucas/Documents/Developpement/Workspace/Java/TwitterC/src/module/backoffice/SendTweet.java</file>
