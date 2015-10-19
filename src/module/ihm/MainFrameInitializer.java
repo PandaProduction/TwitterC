@@ -10,19 +10,22 @@ import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.CellRendererPane;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -42,6 +45,8 @@ import view.component.PandaProdLabel;
 public class MainFrameInitializer extends AbstractIHMAction {
 
     private static MainFrameInitializer instance = null;
+    private PandaProdApplication application;
+    private User user;
 
     private MainFrameInitializer(PandaProdFrame csFrame) {
         super(csFrame);
@@ -77,11 +82,19 @@ public class MainFrameInitializer extends AbstractIHMAction {
 
     @Override
     public boolean execute(Object... object) {
-        PandaProdApplication application = PandaProdApplication.getApplication();
-        User user = application.getUser();
+        application = PandaProdApplication.getApplication();
+        user = application.getUser();
         user.loadNumber();
         user.loadTimeLine();
-
+        initLabel();
+        initButton();
+        initJTextArea();
+        initJList();
+        
+        return true;
+    }
+    
+    public void initLabel() {
         PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelNickname");
         label.setText(user.getName());
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTwitterName");
@@ -91,11 +104,47 @@ public class MainFrameInitializer extends AbstractIHMAction {
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelInscriptionDate");
         label.setText("inscrit le " + user.getInscription());
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelLocation");
-        label.setText(user.getLocation());
+        label.setText(" " + user.getLocation());
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelWebSite");
-        label.setText(user.getWebSite());
+        label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        label.setForeground(Color.CYAN);
+        label.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI(user.getWebSite()));
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+
+        label.setText("<html> <a href=\"" + user.getWebSite() + "\">" + user.getWebSite() + "</a>");
         label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelTitle");
         label.setText("Actualité");
+
+    }
+
+    public void initButton() {
         PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonPictureProfil");
         try {
             button.setDisabledIcon(new ImageIcon(new URL(user.getProfile())));
@@ -106,7 +155,19 @@ public class MainFrameInitializer extends AbstractIHMAction {
         } catch (MalformedURLException ex) {
             Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFollowers");
+        button.setText(Integer.toString(user.getNbFollowers()));
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFriends");
+        button.setText(Integer.toString(user.getNbFriends()));
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonTweets");
+        button.setText(Integer.toString(user.getNbTweet()));
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonRetweet");
+        button.setVisible(false);
+        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonBack");
+        button.setVisible(false);
+    }
 
+    public void initJTextArea(){
         JTextArea textArea = (JTextArea) application.getMainFrameJComponent("jTextAreaNewTweet");
         textArea.addKeyListener(new KeyListener() {
 
@@ -132,16 +193,9 @@ public class MainFrameInitializer extends AbstractIHMAction {
             public void keyReleased(KeyEvent e) {
             }
         });
-
-        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFollowers");
-        button.setText(Integer.toString(user.getNbFollowers()));
-        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFriends");
-        button.setText(Integer.toString(user.getNbFriends()));
-        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonTweets");
-        button.setText(Integer.toString(user.getNbTweet()));
-        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonRetweet");
-        button.setVisible(false);
-
+    }
+    
+    public void initJList(){
         JList jList = (JList) application.getMainFrameJComponent("jListTweet");
         DefaultListModel model = new DefaultListModel();
         jList.setCellRenderer(new ListCellRenderer() {
@@ -152,14 +206,15 @@ public class MainFrameInitializer extends AbstractIHMAction {
                         isSelected, cellHasFocus);
                 if (value instanceof Status) {
                     Status s = (Status) value;
+                    renderer.setForeground(new Color(0, 51, 102));
                     try {
                         renderer.setIcon(new ImageIcon(new URL(s.getUser().getProfileImageURL().toString())));
                     } catch (MalformedURLException ex) {
                         Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    
-                    renderer.setText("<html>" + s.getUser().getName() + " @" + s.getUser().getScreenName() + "<br>"
+
+                    renderer.setText("<html><b>" + s.getUser().getName() + " @" + s.getUser().getScreenName() + "</b><br>"
                             + s.getText() + "<br>"
                             + "Ecrit le " + dateformat.format(s.getCreatedAt()) + "<br><br> </html>");
                 }
@@ -217,10 +272,5 @@ public class MainFrameInitializer extends AbstractIHMAction {
 
         jList.setModel(model);
 
-        button = (PandaProdButton) hsJcomponent.get("pandaProdButtonBack");
-        button.setVisible(false);
-
-        return true;
     }
-
 }

@@ -5,14 +5,11 @@
  */
 package module.backoffice;
 
-import controller.Dispatcher;
 import dao.twitter.ConnectionTwitter;
 import errorMessage.CodeError;
 import interfaces.IAction;
 import javax.swing.JOptionPane;
-import module.ihm.MainFrameInitializer;
 import panda.prod.application.PandaProdApplication;
-import view.component.PandaProdFrame;
 
 /**
  *

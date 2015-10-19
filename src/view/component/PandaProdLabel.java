@@ -22,6 +22,7 @@ public class PandaProdLabel extends JLabel{
     }
 
     public void initComponent() {
-        setForeground(new Color(255, 255, 255));
+        setForeground(new Color(0, 51, 102));
     }
+
 }
