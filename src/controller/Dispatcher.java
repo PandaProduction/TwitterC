@@ -55,7 +55,7 @@ public class Dispatcher implements ActionListener {
     }
 
     public void sendValideCodeAction() {
-        System.err.println("Send valide code");
+        //System.err.println("Send valide code");
         PandaProdApplication application = PandaProdApplication.getApplication();
         String code = ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldCodeTwitter")).getText();
         boolean sendCode = SendCodeAction.getSendCodeAction().execute(code);
@@ -67,37 +67,37 @@ public class Dispatcher implements ActionListener {
     }
 
     public void sendTweetAction() {
-        System.err.println("Send tweet");
+        //System.err.println("Send tweet");
         SendTweet.getSendTweet().execute();
     }
 
     public void seeMyTweetsAction() {
-        System.err.println("See my tweet");
+        //System.err.println("See my tweet");
         PandaProdApplication application = PandaProdApplication.getApplication();
         MyTweetFrameInitializer.getMyTweetFrameInitializer(application.getMainFrame()).execute();
     }
 
     public void seeMyFollowersAction() {
-        System.err.println("See my followers");
+        //System.err.println("See my followers");
         PandaProdApplication application = PandaProdApplication.getApplication();
         MyFollowerFrameInitializer.getMyFollowerFrameInitializer(application.getMainFrame()).execute();
 
     }
 
     public void seeMyFriendsAction() {
-        System.err.println("See my friends");
+        //System.err.println("See my friends");
         PandaProdApplication application = PandaProdApplication.getApplication();
         MyFriendFrameInitializer.getMyFriendFrameInitializer(application.getMainFrame()).execute();
     }
 
     public void backAction() {
-        System.err.println("back");
+        //System.err.println("back");
         PandaProdApplication application = PandaProdApplication.getApplication();
         MainFrameInitializer.getMainFrameInitializer(application.getMainFrame()).execute();
     }
 
     public void retweetAction() {
-        System.err.println("retweet");
+        //System.err.println("retweet");
         Retweet.getRetweet().execute();
     }
 

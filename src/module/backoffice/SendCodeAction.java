@@ -39,9 +39,9 @@ public class SendCodeAction implements IAction {
         String code = (String) object[0];
 
         if (ConnectionTwitter.codeValide(PandaProdApplication.getApplication().getUser(), code) != CodeError.SUCESS) {
-            new JOptionPane();
-            JOptionPane.showMessageDialog(null, "Connexion impossible, merci de vérifier votre login",
-                    "Connexion à Cookie Swipe", JOptionPane.ERROR_MESSAGE);
+            //new JOptionPane();
+            JOptionPane.showMessageDialog(null, "Connexion impossible, merci de vérifier le code pin",
+                    "Connexion à Twitter", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

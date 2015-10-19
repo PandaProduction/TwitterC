@@ -11,11 +11,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.User;
 import twitter4j.Paging;
+import twitter4j.RateLimitStatus;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -29,6 +30,7 @@ import twitter4j.conf.ConfigurationBuilder;
 public class ConnectionTwitter {
 
     public static int connect(User user) {
+        System.err.println("Connect ");
         // Twitter connection and OAuth
         try {
             ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -60,8 +62,14 @@ public class ConnectionTwitter {
     }
 
     public static int codeValide(User user, String code) {
+        System.err.println("code valide ");
         try {
             user.getTwitter().getOAuthAccessToken(user.getRequestToken(), code);
+            Set<String> lm = user.getTwitter().getRateLimitStatus().keySet();
+            for (String s : lm) {
+                System.out.println(s);//System.out.println(s + " : LIMITE : " +  user.getTwitter().getRateLimitStatus().get(s).getLimit() + " RESTANT : " + user.getTwitter().getRateLimitStatus().get(s).getRemaining());
+            }
+
             loadDataOnProfile(user);
             return CodeError.SUCESS;
         } catch (TwitterException ex) {
@@ -71,7 +79,7 @@ public class ConnectionTwitter {
     }
 
     public static int loadDataOnProfile(User user) {
-        System.err.println("loadDataOnProfile");
+        System.err.println("loadDataOnProfile ");
         try {
             user.setId(user.getTwitter().getId());
             twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
@@ -79,13 +87,13 @@ public class ConnectionTwitter {
             user.setName(twitterUser.getName());
             user.setDescritpion(twitterUser.getDescription());
             SimpleDateFormat dateformat = new SimpleDateFormat("MM-yyyy");
-            dateformat.format(twitterUser.getCreatedAt());
             user.setInscription(dateformat.format(twitterUser.getCreatedAt()));
             user.setLangue(twitterUser.getLang());
             user.setLocation(twitterUser.getLocation());
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
             user.setProfile(twitterUser.getBiggerProfileImageURL());
             user.setBan(twitterUser.getProfileBannerURL());
+
             return CodeError.SUCESS;
 
         } catch (TwitterException | IllegalStateException ex) {
@@ -95,7 +103,7 @@ public class ConnectionTwitter {
     }
 
     public static int loadNumber(User user) {
-        System.err.println("loadNumber");
+        System.err.println("loadNumber ");
         try {
             twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
             user.setNbTweet(twitterUser.getStatusesCount());
@@ -110,14 +118,13 @@ public class ConnectionTwitter {
     }
 
     public static int loadMyTweet(User user) {
-        System.err.println("loadMyTweet");
+        System.err.println("loadMyTweet ");
         try {
-            user.setListOfTweet(user.getTwitter().getHomeTimeline());
             user.setListOfMyTweet(user.getTwitter().getUserTimeline());
             for (int i = 1; i <= user.getNbTweet() / 20; i++) {
                 user.getListOfMyTweet().addAll(user.getTwitter().getUserTimeline(new Paging(i)));
             }
-
+            System.err.println(user.getTwitter().getRateLimitStatus().get("/statuses/user_timeline").getLimit() + " RESTANT : " + user.getTwitter().getRateLimitStatus().get("/statuses/user_timeline").getRemaining());
             return CodeError.SUCESS;
         } catch (TwitterException | IllegalStateException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,7 +135,7 @@ public class ConnectionTwitter {
     public static int loadMyFollowers(User user) {
         System.err.println("loadMyFollowers");
         try {
-            user.setListOfFollowers(user.getTwitter().getFollowersList(user.getId(), -1, 200));
+            user.setListOfFollowers(user.getTwitter().getFollowersList(user.getId(), -1, 20));
             return CodeError.SUCESS;
 
         } catch (TwitterException ex) {
@@ -138,9 +145,9 @@ public class ConnectionTwitter {
     }
 
     public static int loadMyFriends(User user) {
-        System.err.println("loadMyFriends");
+        System.err.println("loadMyFriends ");
         try {
-            user.setListOfFriends(user.getTwitter().getFriendsList(user.getId(), -1, 200));
+            user.setListOfFriends(user.getTwitter().getFriendsList(user.getId(), -1, 20));
             return CodeError.SUCESS;
 
         } catch (TwitterException ex) {
@@ -150,9 +157,14 @@ public class ConnectionTwitter {
     }
 
     public static int loadTimeLine(User user) {
-        System.err.println("loadTimeLine");
+        System.err.println("loadTimeLine ");
         try {
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
+            /*for (int i = 1; i <= 4; i++) {
+                user.getListOfTweet().addAll(user.getTwitter().getHomeTimeline(new Paging(i)));
+            }*/
+            System.err.println(user.getTwitter().getRateLimitStatus().get("/statuses/home_timeline").getLimit() + " RESTANT : " + user.getTwitter().getRateLimitStatus().get("/statuses/home_timeline").getRemaining());
+
             return CodeError.SUCESS;
         } catch (TwitterException ex) {
             Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);

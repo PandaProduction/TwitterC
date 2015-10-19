@@ -8,7 +8,10 @@ package module.ihm;
 import controller.ActionName;
 import controller.Dispatcher;
 import interfaces.AbstractIHMAction;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.MalformedURLException;
@@ -21,6 +24,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextArea;
 import javax.swing.ListCellRenderer;
 import model.User;
 import panda.prod.application.PandaProdApplication;
@@ -101,6 +105,32 @@ public class MainFrameInitializer extends AbstractIHMAction {
             Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        JTextArea textArea = (JTextArea) application.getMainFrameJComponent("jTextAreaNewTweet");
+        textArea.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelNbCaractere");
+                JTextArea textArea = (JTextArea) application.getMainFrameJComponent("jTextAreaNewTweet");
+                label.setText(Integer.toString(textArea.getText().length() + 1));
+                if(textArea.getText().length() < 140){
+                    label.setText(Integer.toString(textArea.getText().length() + 1));
+                    label.setForeground(Color.WHITE);
+                }else{
+                    label.setText(Integer.toString(140 - textArea.getText().length() + 1));
+                    label.setForeground(Color.RED);
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFollowers");
         button.setText(Integer.toString(user.getNbFollowers()));
         button = (PandaProdButton) hsJcomponent.get("pandaProdButtonFriends");
@@ -136,17 +166,13 @@ public class MainFrameInitializer extends AbstractIHMAction {
                 JList jList = (JList) application.getMainFrameJComponent("jListTweet");
                 if (jList.getSelectedValue() instanceof Status) {
                     Status s = (Status) jList.getSelectedValue();
-                    System.out.println(s);
+                    //                  System.out.println(s);
                     PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonRetweet");
                     button.setVisible(true);
 
                 } else if (jList.getSelectedValue() instanceof twitter4j.User) {
                     twitter4j.User s = (twitter4j.User) jList.getSelectedValue();
-                    System.out.println(s);
-                    PandaProdButton button = (PandaProdButton) hsJcomponent.get("pandaProdButtonRetweet");
-                    button.setText("Unfollow");
-                    button.addActionListener(null);
-                    button.setVisible(true);
+//                    System.out.println(s);
                 }
             }
 
