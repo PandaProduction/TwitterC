@@ -6,6 +6,7 @@
 package view;
 
 import interfaces.IJFrame;
+import javax.swing.ImageIcon;
 import view.component.PandaProdFrame;
 
 /**
@@ -113,6 +114,7 @@ public class LoginPPFrame extends PandaProdFrame implements IJFrame {
 
     private void configFrame() {
         setTitle("Vérification du code");
+        this.setIconImage(new ImageIcon("resources\\Image\\twitter.png").getImage());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);

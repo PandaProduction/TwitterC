@@ -16,11 +16,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.CellRendererPane;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -113,10 +115,10 @@ public class MainFrameInitializer extends AbstractIHMAction {
                 PandaProdLabel label = (PandaProdLabel) application.getMainFrameJComponent("pandaProdLabelNbCaractere");
                 JTextArea textArea = (JTextArea) application.getMainFrameJComponent("jTextAreaNewTweet");
                 label.setText(Integer.toString(textArea.getText().length() + 1));
-                if(textArea.getText().length() < 140){
+                if (textArea.getText().length() < 140) {
                     label.setText(Integer.toString(textArea.getText().length() + 1));
                     label.setForeground(Color.WHITE);
-                }else{
+                } else {
                     label.setText(Integer.toString(140 - textArea.getText().length() + 1));
                     label.setForeground(Color.RED);
                 }
@@ -150,10 +152,25 @@ public class MainFrameInitializer extends AbstractIHMAction {
                         isSelected, cellHasFocus);
                 if (value instanceof Status) {
                     Status s = (Status) value;
-                    renderer.setText(s.getText());
+                    try {
+                        renderer.setIcon(new ImageIcon(new URL(s.getUser().getProfileImageURL().toString())));
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    
+                    renderer.setText("<html>" + s.getUser().getName() + " @" + s.getUser().getScreenName() + "<br>"
+                            + s.getText() + "<br>"
+                            + "Ecrit le " + dateformat.format(s.getCreatedAt()) + "<br><br> </html>");
                 }
                 if (value instanceof twitter4j.User) {
                     twitter4j.User u = (twitter4j.User) value;
+                    try {
+                        renderer.setIcon(new ImageIcon(new URL(u.getProfileImageURL().toString())));
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(MainFrameInitializer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     renderer.setText(u.getName() + " @" + u.getScreenName());
                 }
                 return renderer;

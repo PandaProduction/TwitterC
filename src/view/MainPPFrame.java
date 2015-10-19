@@ -6,6 +6,7 @@
 package view;
 
 import interfaces.IJFrame;
+import javax.swing.ImageIcon;
 import view.component.PandaProdFrame;
 
 /**
@@ -307,6 +308,7 @@ public class MainPPFrame extends PandaProdFrame implements IJFrame {
     private void configFrame() {
         setTitle("Acceuil");
         setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon("resources\\Image\\twitter.png").getImage());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
         setResizable(false);
