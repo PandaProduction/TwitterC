@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package errorMessage;
 
 /**
- *
- * @author Lucas
+ *  Référentiel des code d'erreur de l'application.
+ * @author Mary
  */
 public class CodeError {
     public static final int SUCESS = 0, FAILLURE = 500, NOT_IMPLEMENT = 999;

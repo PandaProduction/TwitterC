@@ -3,7 +3,7 @@ package controller;
 import java.awt.Color;
 
 /**
- * Nom des différents traitement que l'application peut exécuter
+ * Référentiel des traitements que l'application peut exécuter
  * @author Mary
  */
 public class ActionName {

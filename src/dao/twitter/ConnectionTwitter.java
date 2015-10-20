@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao.twitter;
 
 import errorMessage.CodeError;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -22,17 +16,21 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 import view.component.PandaProdColor;
-import view.component.PandaProdFrame;
 
 /**
+ * Couche en communication avec Twitter
  *
- * @author Lucas
+ * @author Mary
  */
 public class ConnectionTwitter {
 
+    /**
+     * Permet de créer une connexion avec Twitter.
+     *
+     * @param user Utilisateur qui sera connecté à Twitter.
+     * @return code d'erreur
+     */
     public static int connect(User user) {
-        //System.err.println("Connect ");
-        // Twitter connection and OAuth
         try {
             ConfigurationBuilder cb = new ConfigurationBuilder();
             cb.setDebugEnabled(true)
@@ -46,40 +44,49 @@ public class ConnectionTwitter {
             Desktop.getDesktop().browse(new URI(requestToken.getAuthorizationURL()));
             user.setTwitter(twitter);
             user.setRequestToken(requestToken);
-            return CodeError.SUCESS;
 
-        } catch (TwitterException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
-            return CodeError.CONNEXION_FAIL;
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
-            return CodeError.CONNEXION_FAIL;
-        } catch (IOException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            return CodeError.SUCESS;
+        } catch (TwitterException | URISyntaxException | IOException ex) {
+            System.err.println(ex);
+
             return CodeError.CONNEXION_FAIL;
         }
 
     }
 
+    /**
+     * Permet de vérifier la validité du code.
+     *
+     * @param user Utilisateur qui sera connecté.
+     * @param code Code fournis par Twitter.
+     * @return code d'erreur.
+     */
     public static int codeValide(User user, String code) {
-        //System.err.println("code valide ");
         try {
             user.getTwitter().getOAuthAccessToken(user.getRequestToken(), code);
             /*Set<String> lm = user.getTwitter().getRateLimitStatus().keySet();
-            for (String s : lm) {
-                System.out.println(s);//System.out.println(s + " : LIMITE : " +  user.getTwitter().getRateLimitStatus().get(s).getLimit() + " RESTANT : " + user.getTwitter().getRateLimitStatus().get(s).getRemaining());
-            }*/
-
+             for (String s : lm) {
+             System.out.println(s);//System.out.println(s + " : LIMITE : " +  user.getTwitter().getRateLimitStatus().get(s).getLimit() + " RESTANT : " + user.getTwitter().getRateLimitStatus().get(s).getRemaining());
+             }*/
             loadDataOnProfile(user);
+
             return CodeError.SUCESS;
         } catch (TwitterException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+
             return CodeError.FAILLURE;
         }
     }
 
+    /**
+     * Permet de charger les informations de profil de l'utilisateur. Nom et
+     * surnom, description, date de création du compte, langue, lieu, site web,
+     * image de profile et image de banière.
+     *
+     * @param user Utilisateur connecté.
+     * @return Code d'erreur.
+     */
     public static int loadDataOnProfile(User user) {
-        //System.err.println("loadDataOnProfile ");
         try {
             user.setId(user.getTwitter().getId());
             twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
@@ -93,19 +100,23 @@ public class ConnectionTwitter {
             user.setWebSite(twitterUser.getURLEntity().getExpandedURL());
             user.setProfile(twitterUser.getBiggerProfileImageURL());
             user.setBan(twitterUser.getProfileBannerURL());
-            //PandaProdColor.BACKGROUND_FRAME = Color.getColor(twitterUser.getProfileBackgroundColor());
-            System.out.println(PandaProdColor.BACKGROUND_FRAME);
 
             return CodeError.SUCESS;
-
         } catch (TwitterException | IllegalStateException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+
             return CodeError.FAILLURE;
         }
     }
 
+    /**
+     * Permet de charger les nombre clé de l'utilisateur Nombre de tweet, nombre
+     * d'abonnés et nombre d'abonnement.
+     *
+     * @param user Utilisateur connecté.
+     * @return Code d'erreur.
+     */
     public static int loadNumber(User user) {
-        //System.err.println("loadNumber ");
         try {
             twitter4j.User twitterUser = user.getTwitter().showUser(user.getId());
             user.setNbTweet(twitterUser.getStatusesCount());
@@ -113,63 +124,89 @@ public class ConnectionTwitter {
             user.setNbFriends(twitterUser.getFriendsCount());
 
         } catch (TwitterException | IllegalStateException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+
             return CodeError.FAILLURE;
         }
         return CodeError.SUCESS;
     }
 
+    /**
+     * Permet de charger les tweets de l'utilisateur.
+     *
+     * @param user Utilisateur connecté.
+     * @return Code d'erreur.
+     */
     public static int loadMyTweet(User user) {
-        //System.err.println("loadMyTweet ");
         try {
             user.setListOfMyTweet(user.getTwitter().getUserTimeline());
             for (int i = 1; i <= user.getNbTweet() / 20; i++) {
                 user.getListOfMyTweet().addAll(user.getTwitter().getUserTimeline(new Paging(i)));
             }
             //System.err.println(user.getTwitter().getRateLimitStatus().get("/statuses/user_timeline").getLimit() + " RESTANT : " + user.getTwitter().getRateLimitStatus().get("/statuses/user_timeline").getRemaining());
+
             return CodeError.SUCESS;
         } catch (TwitterException | IllegalStateException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+
             return CodeError.FAILLURE;
         }
     }
 
+    /**
+     * Permet de charger les abonnées de l'utilisateur.
+     *
+     * @param user Utilisateur connecté.
+     * @return Code d'erreur.
+     */
     public static int loadMyFollowers(User user) {
-        //System.err.println("loadMyFollowers");
         try {
             user.setListOfFollowers(user.getTwitter().getFollowersList(user.getId(), -1, 20));
-            return CodeError.SUCESS;
 
+            return CodeError.SUCESS;
         } catch (TwitterException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+
             return CodeError.FAILLURE;
         }
     }
 
+    /**
+     * Permet de charger les abonnements de l'utilisateur.
+     *
+     * @param user Utilisateur connecté.
+     * @return Code d'erreur.
+     */
     public static int loadMyFriends(User user) {
-        //System.err.println("loadMyFriends ");
         try {
             user.setListOfFriends(user.getTwitter().getFriendsList(user.getId(), -1, 20));
-            return CodeError.SUCESS;
 
+            return CodeError.SUCESS;
         } catch (TwitterException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+
             return CodeError.FAILLURE;
         }
     }
 
+    /**
+     * Permet de charger l'actualité qui intérésse l'utilisateur.
+     *
+     * @param user Utilisateur connecté.
+     * @return Code d'erreur.
+     */
     public static int loadTimeLine(User user) {
-        //System.err.println("loadTimeLine ");
         try {
             user.setListOfTweet(user.getTwitter().getHomeTimeline());
             /*for (int i = 1; i <= 4; i++) {
-                user.getListOfTweet().addAll(user.getTwitter().getHomeTimeline(new Paging(i)));
-            }*/
+             user.getListOfTweet().addAll(user.getTwitter().getHomeTimeline(new Paging(i)));
+             }*/
             //System.err.println(user.getTwitter().getRateLimitStatus().get("/statuses/home_timeline").getLimit() + " RESTANT : " + user.getTwitter().getRateLimitStatus().get("/statuses/home_timeline").getRemaining());
 
             return CodeError.SUCESS;
         } catch (TwitterException ex) {
-            Logger.getLogger(ConnectionTwitter.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
+
             return CodeError.FAILLURE;
         }
     }

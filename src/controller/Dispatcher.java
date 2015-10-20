@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import module.backoffice.SendCodeAction;
@@ -22,15 +17,17 @@ import module.ihm.MyTweetFrameInitializer;
 import view.MainPPFrame;
 import view.component.PandaProdTextField;
 
+/**
+ *
+ * Listener des bouton permettant de lancer des traitement ou des mises à jours
+ * graphique. Cette classe est un singleton.
+ *
+ * @author Mary
+ */
 public class Dispatcher implements ActionListener {
 
     private static Dispatcher instance = null;
 
-    /**
-     * Distribue les actions de l'utilsiateur à des traitements
-     *
-     * @param e Evénement décrivant l'action à réaliser
-     */
     private Dispatcher() {
 
     }
@@ -43,6 +40,11 @@ public class Dispatcher implements ActionListener {
         return instance;
     }
 
+    /**
+     * Distribue les actions de l'utilsiateur à des traitements
+     *
+     * @param e Evénement décrivant l'action à réaliser
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionName = e.getActionCommand() + "Action";
@@ -54,8 +56,10 @@ public class Dispatcher implements ActionListener {
         }
     }
 
+    /**
+     * Envoie le code de validation et initialise la fenêtre principale.
+     */
     public void sendValideCodeAction() {
-        //System.err.println("Send valide code");
         PandaProdApplication application = PandaProdApplication.getApplication();
         String code = ((PandaProdTextField) application.getMainFrameJComponent("pandaProdTextFieldCodeTwitter")).getText();
         boolean sendCode = SendCodeAction.getSendCodeAction().execute(code);
@@ -66,39 +70,50 @@ public class Dispatcher implements ActionListener {
         }
     }
 
+    /**
+     * Envoie un tweet.
+     */
     public void sendTweetAction() {
-        //System.err.println("Send tweet");
         SendTweet.getSendTweet().execute();
     }
 
-    public void seeMyTweetsAction() {
-        //System.err.println("See my tweet");
-        PandaProdApplication application = PandaProdApplication.getApplication();
-        MyTweetFrameInitializer.getMyTweetFrameInitializer(application.getMainFrame()).execute();
-    }
-
-    public void seeMyFollowersAction() {
-        //System.err.println("See my followers");
-        PandaProdApplication application = PandaProdApplication.getApplication();
-        MyFollowerFrameInitializer.getMyFollowerFrameInitializer(application.getMainFrame()).execute();
-
-    }
-
-    public void seeMyFriendsAction() {
-        //System.err.println("See my friends");
-        PandaProdApplication application = PandaProdApplication.getApplication();
-        MyFriendFrameInitializer.getMyFriendFrameInitializer(application.getMainFrame()).execute();
-    }
-
-    public void backAction() {
-        //System.err.println("back");
-        PandaProdApplication application = PandaProdApplication.getApplication();
-        MainFrameInitializer.getMainFrameInitializer(application.getMainFrame()).execute();
-    }
-
+    /**
+     * Envoie un retweet.
+     */
     public void retweetAction() {
         //System.err.println("retweet");
         Retweet.getRetweet().execute();
     }
 
+    /**
+     * Affiche les tweets de l'utilisateur.
+     */
+    public void seeMyTweetsAction() {
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        MyTweetFrameInitializer.getMyTweetFrameInitializer(application.getMainFrame()).execute();
+    }
+
+    /**
+     * Affiche les abonnés de l'utilsiateur.
+     */
+    public void seeMyFollowersAction() {
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        MyFollowerFrameInitializer.getMyFollowerFrameInitializer(application.getMainFrame()).execute();
+    }
+
+    /**
+     * Affiche les abonnements de l'utilisateur.
+     */
+    public void seeMyFriendsAction() {
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        MyFriendFrameInitializer.getMyFriendFrameInitializer(application.getMainFrame()).execute();
+    }
+
+    /**
+     * Renvoie à la page d'acceuil.
+     */
+    public void backAction() {
+        PandaProdApplication application = PandaProdApplication.getApplication();
+        MainFrameInitializer.getMainFrameInitializer(application.getMainFrame()).execute();
+    }
 }
